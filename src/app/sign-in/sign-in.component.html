@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="p-d-flex sign-in-form">
+  <div class="p-d-flex p-flex-column sign-in-form">
     <span>{{'connexion.labels.connect' | translate}}</span>
     <span class="p-float-label">
       <input id="email" type="email" pInputText>
@@ -9,6 +9,7 @@
       <input type="password" id="password" pPassword/>
       <label for="password">Password</label>
     </span>
+    <span>{{'connexion.labels.noAccount' |translate}} <a href="#">{{'connexion.labels.noAccountCTA' |translate}} </a> </span>
     <button pButton pRipple type="button" [label]="'connexion.labels.signIn' | translate"></button>
   </div>
 </div>
