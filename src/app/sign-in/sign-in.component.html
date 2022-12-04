@@ -1,11 +1,14 @@
 <div class="container">
-  <div class="sign-in-form">
-    <p>{{'connexion.labels.connect' | translate}}</p>
-    <input type="email" class="form-control"
-           formControlName="email"
-           id="floatingInputEmail"
-           placeholder=" "
-           autocomplete="email"
-           required>
+  <div class="p-d-flex sign-in-form">
+    <span>{{'connexion.labels.connect' | translate}}</span>
+    <span class="p-float-label">
+      <input id="email" type="email" pInputText>
+      <label for="email">Email</label>
+    </span>
+    <span class="p-float-label">
+      <input type="password" id="password" pPassword/>
+      <label for="password">Password</label>
+    </span>
+    <button pButton pRipple type="button" [label]="'connexion.labels.signIn' | translate"></button>
   </div>
 </div>

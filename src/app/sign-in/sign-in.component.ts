@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PATHS} from '../utils/const/paths';
 import {Title} from '@angular/platform-browser';
-import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-sign-in',
@@ -9,6 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+  value1: string;
 
   constructor(public title: Title) {
   }

@@ -1,7 +1,8 @@
 {
   "connexion": {
     "labels": {
-      "connect": "Se connecter"
+      "connect": "Se connecter",
+      "signIn": "Se connecter"
     }
   }
 }

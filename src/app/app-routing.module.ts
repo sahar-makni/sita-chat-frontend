@@ -1,9 +1,14 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {PATHS} from './utils/const/paths';
 import {SignInComponent} from './sign-in/sign-in.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: PATHS.SIGN_IN.VALUE,
+    pathMatch: 'full',
+  },
   {
     path: PATHS.SIGN_IN.VALUE,
     component: SignInComponent,
@@ -12,8 +17,10 @@ const routes: Routes = [
     }
   },
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

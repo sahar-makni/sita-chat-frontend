@@ -1,17 +1,13 @@
 .container {
   min-height: 100vh;
-  background: rgb(248, 224, 233);
   background: linear-gradient(165deg, rgba(248, 224, 233, 1) 0%, rgba(203, 207, 211, 1) 50%, rgba(248, 224, 233, 1) 100%);
 }
 
 .sign-in-form {
-  background-color: coral;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 50%;
-  width: 50%;
+  background-color: white;
+  box-shadow: 0 0 0 1px black;
+  height: 500px;
+  width: 500px;
 }
 
 .form-control {
