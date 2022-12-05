@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PATHS} from '../utils/const/paths';
 import {Title} from '@angular/platform-browser';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SignInService} from './sign-in.service';
+import {SignInRequest, SignInResponse} from './sign-in.type';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,6 +17,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public title: Title,
+    private signInService: SignInService,
   ) {
     this.setupForm();
   }
@@ -33,7 +36,15 @@ export class SignInComponent implements OnInit {
   }
 
   signIn(): void {
-
+    this.signInService.signIn(this.form.value).subscribe({
+      next: (signInResponse: SignInResponse) => {
+        console.log('Welcome ', signInResponse);
+        // TODO : Redirect to home page.
+      }, error: (error) => {
+        // todo: show error message
+        console.error('failed', error);
+      }
+    });
     console.log(this.form.value);
   }
 }
