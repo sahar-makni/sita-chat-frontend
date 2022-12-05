@@ -12,6 +12,7 @@ import {InputTextModule} from 'primeng-lts/inputtext';
 import {ButtonModule} from 'primeng-lts/button';
 import {RippleModule} from 'primeng-lts/ripple';
 import {PasswordModule} from 'primeng-lts/password';
+import {WEB_LOCAL_STORAGE, WEB_SESSION_STORAGE} from "./utils/web-storage.provider";
 
 
 @NgModule({
@@ -38,7 +39,22 @@ import {PasswordModule} from 'primeng-lts/password';
     PasswordModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: WEB_LOCAL_STORAGE,
+      useFactory: () => {
+        return localStorage;
+      }
+    },
+    {
+      provide: WEB_SESSION_STORAGE,
+      useFactory: () => {
+        return sessionStorage;
+      }
+    }
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
