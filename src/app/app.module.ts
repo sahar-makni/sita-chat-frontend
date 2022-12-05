@@ -7,7 +7,7 @@ import {SignInComponent} from './sign-in/sign-in.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputTextModule} from 'primeng-lts/inputtext';
 import {ButtonModule} from 'primeng-lts/button';
 import {RippleModule} from 'primeng-lts/ripple';
@@ -36,6 +36,7 @@ import {PasswordModule} from 'primeng-lts/password';
     ButtonModule,
     RippleModule,
     PasswordModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

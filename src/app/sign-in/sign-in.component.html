@@ -1,23 +1,53 @@
 <div class="container p-grid p-jc-center p-ai-center">
-  <div class="p-fluid p-col-2 sign-in-form p-p-4">
-    <h1 class="p-text-bold p-my-2 p-field p-col-12">{{'connexion.labels.connect' | translate}}</h1>
-    <div class="p-my-5 p-field p-col-12">
+  <form [formGroup]="form">
+    <div class="p-fluid p-col-2 sign-in-form p-p-4">
+      <h1 class="p-text-bold p-my-2 p-field p-col-12">{{'connexion.labels.connect' | translate}}</h1>
+      <div class="p-my-5 p-field p-col-12">
       <span class="p-float-label">
-        <input id="email" type="email" pInputText>
+        <input [class.p-invalid]="form.controls.email.invalid && form.controls.email.touched"
+               aria-describedby="email-help"
+               formControlName="email"
+               id="email"
+               pInputText
+               type="email"
+        >
         <label for="email">Email</label>
+        <small
+          *ngIf="form.controls.email.invalid && form.controls.email.touched"
+          class="p-invalid" id="email-help">
+            <span *ngIf="form.controls.email.errors?.required">
+          {{"connexion.errors.emailRequired" | translate}}
+            </span>
+          <span *ngIf="form.controls.email.errors?.email">
+         {{"connexion.errors.invalidEmailFormat" | translate}}
+
+            </span>
+          </small>
       </span>
-    </div>
-    <div class="p-my-5 p-field p-col-12">
+      </div>
+      <div class="p-my-5 p-field p-col-12">
       <span class="p-float-label">
-        <input type="password" id="password" pPassword/>
-        <label for="password">Password</label>
+        <input [class.p-invalid]="form.controls.password.invalid && form.controls.password.touched" [feedback]="false" formControlName="password"
+               id="password"
+               pPassword
+
+               type="password"
+        />
+        <span
+          *ngIf="form.controls.email.invalid && form.controls.email.touched && form.controls.password.errors?.required"
+          class="p-invalid"
+        >{{"connexion.errors.passwordRequired" | translate}}</span>
+        <label
+          for="password">Password</label>
       </span>
+
+      </div>
+      <span class="p-my-4 p-field p-col-12">{{'connexion.labels.noAccount' | translate}} <a
+        href="#">{{'connexion.labels.noAccountCTA' | translate}} </a> </span>
+      <div class="p-d-flex p-jc-end p-my-4 p-field p-col-12">
+        <button [label]="'connexion.labels.signIn' | translate" pButton pRipple
+                type="button"></button>
+      </div>
     </div>
-    <span class="p-my-4 p-field p-col-12">{{'connexion.labels.noAccount' |translate}} <a
-      href="#">{{'connexion.labels.noAccountCTA' |translate}} </a> </span>
-    <div class="p-d-flex p-jc-end p-my-4 p-field p-col-12">
-      <button  pButton pRipple type="button"
-            [label]="'connexion.labels.signIn' | translate"></button>
-    </div>
-  </div>
+  </form>
 </div>
