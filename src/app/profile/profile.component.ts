@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
+import {ThemeOption, ThemeService} from '../common/theme.service';
 
-export type ThemeOption = 'DARK' | 'THEME';
+
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +17,16 @@ export class ProfileComponent implements OnInit {
 
   selectedTheme: ThemeOption = 'DARK';
 
-  constructor(private readonly translateService: TranslateService) {
+  constructor(private readonly translateService: TranslateService,
+              private readonly themeService: ThemeService,
+              ) {
   }
 
   ngOnInit(): void {
   }
 
+  handleSelectedTheme(newTheme: ThemeOption): void {
+    this.selectedTheme = newTheme;
+    this.themeService.switchTheme(newTheme);
+  }
 }

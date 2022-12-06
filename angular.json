@@ -23,6 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "extractCss": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -31,7 +32,16 @@
               "src/styles.scss",
               "src/_overrides.scss",
               "./node_modules/primeicons/primeicons.css",
-              "./node_modules/primeng-lts/resources/themes/saga-blue/theme.css",
+              {
+                "input": "src/theme-arya-blue.scss",
+                "bundleName": "arya-blue",
+                "inject": false
+              },
+              {
+                "input": "src/theme-saga-blue.scss",
+                "bundleName": "saga-blue",
+                "inject": false
+              },
               "./node_modules/primeng-lts/resources/primeng.min.css",
               "./node_modules/primeflex/primeflex.scss"
             ],
@@ -128,6 +138,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "sita"
 }

@@ -6,7 +6,7 @@
         {{ 'profile.theme.label' | translate }}
       </div>
       <div class="p-col-8">
-        <p-selectButton [(ngModel)]="selectedTheme" [options]="themes"></p-selectButton>
+        <p-selectButton [ngModel]="selectedTheme" (ngModelChange)="handleSelectedTheme($event)" [options]="themes"></p-selectButton>
       </div>
     </div>
   </div>
