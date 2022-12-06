@@ -14,8 +14,15 @@
     }
   },
   "header": {
-    "labels" : {
+    "labels": {
       "account": "Account"
+    }
+  },
+  "profile": {
+    "theme": {
+      "label": "Chose your theme",
+      "light": "Light Theme",
+      "dark": "Drakula"
     }
   }
 }

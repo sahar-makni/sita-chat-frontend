@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
           }
         }, {
           label: 'Logout',
-          icon: 'pi pi-fw pi-power-off',
+          icon: 'pi pi-fw pi-sign-out',
           command: () => {
             this.userService.signOut();
           }

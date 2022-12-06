@@ -23,6 +23,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import {TabMenuModule} from 'primeng-lts/tabmenu';
 import {MenuModule} from 'primeng-lts/menu';
 import { ProfileComponent } from './profile/profile.component';
+import {SelectButtonModule} from "primeng-lts/selectbutton";
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { ProfileComponent } from './profile/profile.component';
     MenubarModule,
     TabMenuModule,
     MenuModule,
+    SelectButtonModule,
   ],
   providers: [
     {

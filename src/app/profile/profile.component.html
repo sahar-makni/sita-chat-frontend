@@ -1,1 +1,14 @@
-<p>profile works!</p>
+<div class="p-m-5">
+  <h1>Profile</h1>
+  <div class="p-d-flex p-flex-column" style="font-size: 1.25rem">
+    <div class="p-d-flex p-ai-center">
+      <div>
+        {{ 'profile.theme.label' | translate }}
+      </div>
+      <div class="p-col-8">
+        <p-selectButton [(ngModel)]="selectedTheme" [options]="themes"></p-selectButton>
+      </div>
+    </div>
+  </div>
+</div>
+
