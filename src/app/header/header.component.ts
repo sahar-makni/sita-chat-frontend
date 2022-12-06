@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng-lts/api';
+import {Router} from '@angular/router';
+import {PATHS} from '../utils/const/paths';
+import {UserService} from '../common/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +13,9 @@ export class HeaderComponent implements OnInit {
 
   items: MenuItem[];
 
+  constructor(private readonly router: Router, private readonly userService: UserService) {
+  }
+
   ngOnInit(): void {
     this.items = [
       {
@@ -18,13 +24,14 @@ export class HeaderComponent implements OnInit {
           label: 'Profile',
           icon: 'pi pi-fw pi-user',
           command: () => {
-            // redirect to profile
+            this.router.navigate([PATHS.PROFILE.VALUE]).then();
           }
         }, {
           label: 'Logout',
           icon: 'pi pi-fw pi-power-off',
-          // delete local storage
-          // redirect to sign in
+          command: () => {
+            this.userService.signOut();
+          }
         }
         ]
       }

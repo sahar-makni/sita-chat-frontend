@@ -1,14 +1,15 @@
 import {Inject, Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {PATHS} from "../const/paths";
-import {WEB_LOCAL_STORAGE} from "../providers/web-storage.provider";
-import {ACCESS_TOKEN} from "../const/general";
+import {PATHS} from '../const/paths';
+import {WEB_LOCAL_STORAGE} from '../providers/web-storage.provider';
+import {ACCESS_TOKEN} from '../const/general';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, @Inject(WEB_LOCAL_STORAGE) private localStorage: Storage) {
+  constructor(private readonly router: Router,
+              @Inject(WEB_LOCAL_STORAGE) private readonly localStorage: Storage) {
   }
 
   canActivate(

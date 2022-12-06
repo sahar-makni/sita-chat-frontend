@@ -17,6 +17,7 @@ const routes: Routes = [
   },
   {
     path: PATHS.SIGN_IN.VALUE,
+    canActivate: [ /* TODO: add login guard here (redirect to home if already signed in) */ ],
     component: SignInComponent,
     data: {
       title: PATHS.SIGN_IN.TITLE,

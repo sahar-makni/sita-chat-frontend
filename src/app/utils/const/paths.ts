@@ -7,4 +7,8 @@ export const PATHS = {
     VALUE: 'chat',
     TITLE: 'SITA - Chat'
   },
+  PROFILE: {
+    VALUE: 'profile',
+    TITLE: 'SITA - Profile'
+  },
 };
