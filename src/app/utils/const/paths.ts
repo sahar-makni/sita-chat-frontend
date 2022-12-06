@@ -3,4 +3,8 @@ export const PATHS = {
     VALUE: 'sign-in',
     TITLE: 'SITA - Sign In'
   },
+  CHAT: {
+    VALUE: 'chat',
+    TITLE: 'SITA - Chat'
+  },
 };

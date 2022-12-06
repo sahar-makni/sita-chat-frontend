@@ -6,6 +6,7 @@ import {SignInService} from './sign-in.service';
 import {SignInResponse} from './sign-in.type';
 import {MessageService} from 'primeng-lts/api';
 import {TranslateService} from '@ngx-translate/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
@@ -18,6 +19,7 @@ export class SignInComponent implements OnInit {
   form: FormGroup;
 
   constructor(
+    private router: Router,
     private messageService: MessageService,
     private translateService: TranslateService,
     private formBuilder: FormBuilder,
@@ -49,7 +51,7 @@ export class SignInComponent implements OnInit {
           severity: 'success',
           summary: this.translateService.instant('connexion.messages.signInSuccess')
         });
-        // TODO : Redirect to home page.
+        this.router.navigate([PATHS.CHAT.VALUE]).then();
       }, error: () => {
         this.messageService.add({
           severity: 'error',

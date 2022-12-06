@@ -16,12 +16,16 @@ import {WEB_LOCAL_STORAGE, WEB_SESSION_STORAGE} from './utils/web-storage.provid
 import {MessageModule} from 'primeng-lts/message';
 import {MessagesModule} from 'primeng-lts/messages';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ChatComponent } from './chat/chat.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent
+    SignInComponent,
+    ChatComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
