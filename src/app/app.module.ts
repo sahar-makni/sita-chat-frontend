@@ -12,12 +12,14 @@ import {InputTextModule} from 'primeng-lts/inputtext';
 import {ButtonModule} from 'primeng-lts/button';
 import {RippleModule} from 'primeng-lts/ripple';
 import {PasswordModule} from 'primeng-lts/password';
-import {WEB_LOCAL_STORAGE, WEB_SESSION_STORAGE} from './utils/web-storage.provider';
+import {WEB_LOCAL_STORAGE, WEB_SESSION_STORAGE} from './utils/providers/web-storage.provider';
 import {MessageModule} from 'primeng-lts/message';
 import {MessagesModule} from 'primeng-lts/messages';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ChatComponent } from './chat/chat.component';
-import { HeaderComponent } from './header/header.component';
+import {ChatComponent} from './chat/chat.component';
+import {HeaderComponent} from './header/header.component';
+import {MenubarModule} from 'primeng-lts/menubar';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     SignInComponent,
     ChatComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { HeaderComponent } from './header/header.component';
     MessagesModule,
     MessageModule,
     BrowserAnimationsModule,
+    MenubarModule,
   ],
   providers: [
     {
