@@ -12,5 +12,10 @@
     "messages": {
       "signInSuccess": "Welcome!"
     }
+  },
+  "header": {
+    "labels" : {
+      "account": "Account"
+    }
   }
 }

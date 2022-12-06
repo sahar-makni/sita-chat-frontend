@@ -20,6 +20,8 @@ import {ChatComponent} from './chat/chat.component';
 import {HeaderComponent} from './header/header.component';
 import {MenubarModule} from 'primeng-lts/menubar';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import {TabMenuModule} from 'primeng-lts/tabmenu';
+import {MenuModule} from 'primeng-lts/menu';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     MessageModule,
     BrowserAnimationsModule,
     MenubarModule,
+    TabMenuModule,
+    MenuModule,
   ],
   providers: [
     {
