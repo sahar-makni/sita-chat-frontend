@@ -21,8 +21,7 @@ export class UserService {
   signIn(signInRequest: SignInRequest): Observable<SignInResponse> {
     return this.httpClient.post<SignInResponse>(`${environment.baseUrl}/signin`, signInRequest)
       .pipe(tap((signInSuccessResponse: SignInSuccessResponse) =>
-        this.localStorage.setItem(ACCESS_TOKEN, signInSuccessResponse.accessToken)))
-      ;
+        this.localStorage.setItem(ACCESS_TOKEN, signInSuccessResponse.accessToken)));
   }
 
   signOut(): void {

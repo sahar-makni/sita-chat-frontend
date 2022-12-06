@@ -5,6 +5,7 @@ import {SignInComponent} from './sign-in/sign-in.component';
 import {ChatComponent} from './chat/chat.component';
 import {MainLayoutComponent} from './main-layout/main-layout.component';
 import {AuthGuard} from './utils/guard/auth-guard';
+import {ProfileComponent} from "./profile/profile.component";
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: MainLayoutComponent,
     children: [
-      {path: PATHS.CHAT.VALUE, component: ChatComponent}
+      {path: PATHS.CHAT.VALUE, component: ChatComponent},
+      {path: PATHS.PROFILE.VALUE, component: ProfileComponent},
     ]
   },
   {
