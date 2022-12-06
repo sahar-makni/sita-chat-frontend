@@ -4,7 +4,7 @@ import {PATHS} from './utils/const/paths';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {ChatComponent} from './chat/chat.component';
 import {MainLayoutComponent} from './main-layout/main-layout.component';
-import {AuthGuard} from './utils/guard/AuthGuard';
+import {AuthGuard} from './utils/guard/auth-guard';
 
 const routes: Routes = [
   {

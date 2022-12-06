@@ -22,6 +22,7 @@ import {MenubarModule} from 'primeng-lts/menubar';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import {TabMenuModule} from 'primeng-lts/tabmenu';
 import {MenuModule} from 'primeng-lts/menu';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {MenuModule} from 'primeng-lts/menu';
     SignInComponent,
     ChatComponent,
     HeaderComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
