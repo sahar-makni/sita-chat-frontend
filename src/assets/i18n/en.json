@@ -5,6 +5,12 @@
       "signIn": "Sign in",
       "noAccount": "You don't have an account?",
       "noAccountCTA": "Sign up here."
+    },
+    "errors": {
+      "signInError": "Wrong email or password."
+    },
+    "messages": {
+      "signInSuccess": "Welcome!"
     }
   }
 }

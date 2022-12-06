@@ -12,7 +12,10 @@ import {InputTextModule} from 'primeng-lts/inputtext';
 import {ButtonModule} from 'primeng-lts/button';
 import {RippleModule} from 'primeng-lts/ripple';
 import {PasswordModule} from 'primeng-lts/password';
-import {WEB_LOCAL_STORAGE, WEB_SESSION_STORAGE} from "./utils/web-storage.provider";
+import {WEB_LOCAL_STORAGE, WEB_SESSION_STORAGE} from './utils/web-storage.provider';
+import {MessageModule} from 'primeng-lts/message';
+import {MessagesModule} from 'primeng-lts/messages';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -38,6 +41,9 @@ import {WEB_LOCAL_STORAGE, WEB_SESSION_STORAGE} from "./utils/web-storage.provid
     RippleModule,
     PasswordModule,
     ReactiveFormsModule,
+    MessagesModule,
+    MessageModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {
