@@ -33,6 +33,12 @@
     "stat": {
       "messagesCount": "Number of rooms:",
       "roomsCount": "Number of message:"
+    },
+    "email": {
+      "label" : "Email:"
+    },
+    "password": {
+      "edit": "Change password"
     }
   }
 }

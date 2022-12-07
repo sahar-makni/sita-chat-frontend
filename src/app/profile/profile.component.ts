@@ -47,4 +47,14 @@ export class ProfileComponent implements OnInit {
     this.selectedLanguage = language;
     this.translateService.use(language.toLowerCase());
   }
+
+  editEmail(): void {
+    // todo: open popup to edit email
+    console.log('edit email');
+  }
+
+  changePassword(): void {
+    // todo: open popup to change password
+    console.log('change password');
+  }
 }

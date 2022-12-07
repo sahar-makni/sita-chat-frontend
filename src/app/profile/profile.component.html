@@ -4,6 +4,15 @@
     <app-stat-image></app-stat-image>
   </div>
   <div class="p-col-8">
+    <div class="p-d-flex flex-gap p-mb-2 title-text-size">
+      <div>
+        {{ 'profile.email.label' | translate }}
+      </div>
+      <div>
+        test@gmail.com
+      </div>
+      <em (click)="editEmail()" class="pi pi-file-edit"></em>
+    </div>
     <div class="p-d-flex p-flex-column title-text-size">
       <div class="p-d-flex p-ai-center">
         <div>
@@ -26,6 +35,7 @@
         </div>
       </div>
     </div>
+    <button (click)="changePassword()" [label]="('profile.password.edit' | translate)" class="p-button-raised" pButton pRipple type="button"></button>
   </div>
 </div>
 
