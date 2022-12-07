@@ -8,12 +8,14 @@ import {tap} from 'rxjs/operators';
 import {ACCESS_TOKEN} from '../utils/const/general';
 import {Router} from '@angular/router';
 import {PATHS} from '../utils/const/paths';
+import {ThemeOption, ThemeService} from './theme.service';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
   constructor(private readonly httpClient: HttpClient,
               @Inject(WEB_LOCAL_STORAGE) private readonly localStorage: Storage,
               private readonly router: Router,
+              private readonly themeService: ThemeService,
   ) {
   }
 
@@ -25,8 +27,15 @@ export class UserService {
   }
 
   signOut(): void {
+    // remove access token from storage
     this.localStorage.removeItem(ACCESS_TOKEN);
-    this.router.navigate([PATHS.SIGN_IN.VALUE]).then();
+    // set theme to default (saga-blue)
+    this.themeService.switchTheme('LIGHT');
+    // redirect to login page
+    // we need a little wait here, so that the theme is well modified
+    setTimeout(() => {
+      this.router.navigate([PATHS.SIGN_IN.VALUE]).then();
+    }, 10);
   }
 
 }
