@@ -15,7 +15,8 @@
   },
   "header": {
     "labels": {
-      "account": "Account"
+      "account": "Account",
+      "home": "Home"
     }
   },
   "profile": {

@@ -38,4 +38,7 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
+  redirectToChat(): void {
+    this.router.navigate([PATHS.CHAT.VALUE]).then();
+  }
 }
