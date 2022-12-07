@@ -10,5 +10,15 @@
       </div>
     </div>
   </div>
+  <div class="p-d-flex p-flex-column text-font">
+    <div class="p-d-flex p-ai-center">
+      <div>
+        {{ 'profile.language.label' | translate }}
+      </div>
+      <div class="p-col-8">
+        <p-selectButton [ngModel]="selectedLanguage" (ngModelChange)="handleSelectedLanguage($event)" [options]="languages"></p-selectButton>
+      </div>
+    </div>
+  </div>
 </div>
 

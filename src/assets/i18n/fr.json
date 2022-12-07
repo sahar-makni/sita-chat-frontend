@@ -2,7 +2,33 @@
   "connexion": {
     "labels": {
       "connect": "Se connecter",
-      "signIn": "Se connecter"
+      "signIn": "Se connecter",
+      "noAccount": "You don't have an account?",
+      "noAccountCTA": "Sign up here."
+    },
+    "errors": {
+      "signInError": "Wrong email or password."
+    },
+    "messages": {
+      "signInSuccess": "Welcome!"
+    }
+  },
+  "header": {
+    "labels": {
+      "account": "Compte",
+      "home": "Accueil"
+    }
+  },
+  "profile": {
+    "theme": {
+      "label": "Choisir ton théme:",
+      "light": "Light Theme",
+      "dark": "Drakula"
+    },
+    "language": {
+      "label": "Choisir ta langue:",
+      "en": "English",
+      "fr": "French"
     }
   }
 }

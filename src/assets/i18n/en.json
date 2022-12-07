@@ -21,9 +21,14 @@
   },
   "profile": {
     "theme": {
-      "label": "Chose your theme",
+      "label": "Chose your theme:",
       "light": "Light Theme",
       "dark": "Drakula"
+    },
+    "language": {
+      "label": "Chose your language:",
+      "en": "English",
+      "fr": "French"
     }
   }
 }
