@@ -35,14 +35,21 @@
         </div>
       </div>
     </div>
-    <button (click)="changePassword()" [label]="('profile.password.edit' | translate)" class="p-button-raised" pButton
+    <button (click)="showEditPasswordDialog=true"
+            [label]="('profile.password.edit' | translate)"
+            class="p-button-raised" pButton
             pRipple type="button"></button>
   </div>
 </div>
 
 
 <app-edit-email-dialog
-  [(visible)]="showEditEmailDialog"
   (submitEmail)="editEmail($event)"
+  [(visible)]="showEditEmailDialog"
 ></app-edit-email-dialog>
+
+<app-edit-password-dialog
+  (submitPassword)="updatePassword($event)"
+  [(visible)]="showEditPasswordDialog"
+></app-edit-password-dialog>
 <p-toast position="top-right"></p-toast>

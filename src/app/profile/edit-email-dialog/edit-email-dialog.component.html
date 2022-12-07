@@ -5,16 +5,17 @@
           [visible]="visible"
 
 >
-  <div class="container p-d-flex p-ai-center">
-      <span class="p-float-label p-mt-2">
+
+  <div class="p-fluid p-p-4">
+    <div class="p-my-5 p-field p-col-12">
+      <span class="p-float-label">
         <input [class.p-invalid]="emailInput.invalid && emailInput.touched"
-               [formControl]="emailInput"
                aria-describedby="email-help"
                id="email"
                pInputText
                type="email"
         >
-        <label for="email">Email</label>
+        <label for="email">{{ 'profile.email.label' | translate}}</label>
         <small
           *ngIf="emailInput.invalid && emailInput.touched"
           class="p-invalid" id="email-help">
@@ -26,6 +27,7 @@
             </span>
           </small>
       </span>
+    </div>
   </div>
   <ng-template pTemplate="footer">
     <p-button

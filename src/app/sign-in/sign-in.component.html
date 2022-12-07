@@ -27,7 +27,8 @@
       </div>
       <div class="p-my-5 p-field p-col-12">
       <span class="p-float-label">
-        <input [class.p-invalid]="form.controls.password.invalid && form.controls.password.touched" [feedback]="false" formControlName="password"
+        <input [class.p-invalid]="form.controls.password.invalid && form.controls.password.touched" [feedback]="false"
+               formControlName="password"
                id="password"
                pPassword
 
@@ -45,11 +46,11 @@
       <span class="p-my-4 p-field p-col-12">{{'connexion.labels.noAccount' | translate}} <a
         href="#">{{'connexion.labels.noAccountCTA' | translate}} </a> </span>
       <div class="p-d-flex p-jc-end p-my-4 p-field p-col-12">
-        <button [label]="'connexion.labels.signIn' | translate" pButton pRipple
-            [disabled]="form.invalid"
+        <button (click)="signIn()" [disabled]="form.invalid" [label]="'connexion.labels.signIn' | translate"
+                pButton
 
+                pRipple
                 type="button"
-          (click)="signIn()"
 
         ></button>
       </div>

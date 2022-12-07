@@ -41,7 +41,13 @@
       "header": "Update email"
     },
     "password": {
-      "edit": "Change password"
+      "header": "Change password",
+      "oldPasswordLabel": "Current password",
+      "newPasswordLabel": "New password",
+      "newPasswordConfirmationLabel": "Confirm password",
+      "edit": "Change password",
+      "error": "Invalid password",
+      "mismatch": "New password and confirmation do NOT match"
     }
   }
 }

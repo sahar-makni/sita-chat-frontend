@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   selectedTheme: ThemeOption = 'DARK';
   selectedLanguage: Languages = 'EN';
   showEditEmailDialog = false;
+  showEditPasswordDialog: boolean;
 
 
   constructor(private readonly translateService: TranslateService,
@@ -79,4 +80,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  updatePassword(password: { oldPassword: string; newPassword: string }): void {
+    console.log('updatePassword called with', password);
+  }
 }

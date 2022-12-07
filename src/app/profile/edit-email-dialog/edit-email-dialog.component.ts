@@ -24,5 +24,6 @@ export class EditEmailDialogComponent implements OnInit {
   cancelEditEmail(): void {
     this.emailInput.reset('');
     this.visible = false;
+    this.visibleChange.emit(false);
   }
 }

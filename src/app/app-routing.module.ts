@@ -5,7 +5,7 @@ import {SignInComponent} from './sign-in/sign-in.component';
 import {ChatComponent} from './chat/chat.component';
 import {MainLayoutComponent} from './main-layout/main-layout.component';
 import {AuthGuard} from './utils/guard/auth-guard';
-import {ProfileComponent} from "./profile/profile.component";
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   {
