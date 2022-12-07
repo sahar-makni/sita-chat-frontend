@@ -23,6 +23,6 @@ export class EditEmailDialogComponent implements OnInit {
 
   cancelEditEmail(): void {
     this.emailInput.reset('');
-    this.showEditEmailDialog = false;
+    this.visible = false;
   }
 }
