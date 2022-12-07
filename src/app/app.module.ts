@@ -24,6 +24,7 @@ import {TabMenuModule} from 'primeng-lts/tabmenu';
 import {MenuModule} from 'primeng-lts/menu';
 import { ProfileComponent } from './profile/profile.component';
 import {SelectButtonModule} from "primeng-lts/selectbutton";
+import { StatImageComponent } from './profile/personal-info/stat-image.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {SelectButtonModule} from "primeng-lts/selectbutton";
     ChatComponent,
     HeaderComponent,
     MainLayoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    StatImageComponent
   ],
   imports: [
     BrowserModule,

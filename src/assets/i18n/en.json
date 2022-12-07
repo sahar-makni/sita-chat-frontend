@@ -29,6 +29,10 @@
       "label": "Chose your language:",
       "en": "English",
       "fr": "French"
+    },
+    "stat": {
+      "messagesCount": "Number of rooms:",
+      "roomsCount": "Number of message:"
     }
   }
 }

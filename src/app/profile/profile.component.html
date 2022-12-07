@@ -1,22 +1,29 @@
-<div class="p-m-5">
-  <h1>Profile</h1>
-  <div class="p-d-flex p-flex-column text-font">
-    <div class="p-d-flex p-ai-center">
-      <div>
-        {{ 'profile.theme.label' | translate }}
-      </div>
-      <div class="p-col-8">
-        <p-selectButton [ngModel]="selectedTheme" (ngModelChange)="handleSelectedTheme($event)" [options]="themes"></p-selectButton>
+<h1 class="p-m-5">Profile</h1>
+<div class="p-grid">
+  <div class="p-col-2 p-px-2">
+    <app-stat-image></app-stat-image>
+  </div>
+  <div class="p-col-8">
+    <div class="p-d-flex p-flex-column title-text-size">
+      <div class="p-d-flex p-ai-center">
+        <div>
+          {{ 'profile.theme.label' | translate }}
+        </div>
+        <div class="p-col-8">
+          <p-selectButton (ngModelChange)="handleSelectedTheme($event)" [ngModel]="selectedTheme"
+                          [options]="themes"></p-selectButton>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="p-d-flex p-flex-column text-font">
-    <div class="p-d-flex p-ai-center">
-      <div>
-        {{ 'profile.language.label' | translate }}
-      </div>
-      <div class="p-col-8">
-        <p-selectButton [ngModel]="selectedLanguage" (ngModelChange)="handleSelectedLanguage($event)" [options]="languages"></p-selectButton>
+    <div class="p-d-flex p-flex-column title-text-size">
+      <div class="p-d-flex p-ai-center">
+        <div>
+          {{ 'profile.language.label' | translate }}
+        </div>
+        <div class="p-col-8">
+          <p-selectButton (ngModelChange)="handleSelectedLanguage($event)" [ngModel]="selectedLanguage"
+                          [options]="languages"></p-selectButton>
+        </div>
       </div>
     </div>
   </div>
