@@ -19,12 +19,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ChatComponent} from './chat/chat.component';
 import {HeaderComponent} from './header/header.component';
 import {MenubarModule} from 'primeng-lts/menubar';
-import { MainLayoutComponent } from './main-layout/main-layout.component';
+import {MainLayoutComponent} from './main-layout/main-layout.component';
 import {TabMenuModule} from 'primeng-lts/tabmenu';
 import {MenuModule} from 'primeng-lts/menu';
-import { ProfileComponent } from './profile/profile.component';
-import {SelectButtonModule} from "primeng-lts/selectbutton";
-import { StatImageComponent } from './profile/personal-info/stat-image.component';
+import {ProfileComponent} from './profile/profile.component';
+import {SelectButtonModule} from 'primeng-lts/selectbutton';
+import {StatImageComponent} from './profile/personal-info/stat-image.component';
+import {DialogModule} from 'primeng-lts/dialog';
+import {ToastModule} from 'primeng-lts/toast';
+import { EditEmailDialogComponent } from './profile/edit-email-dialog/edit-email-dialog.component';
 
 
 @NgModule({
@@ -35,7 +38,8 @@ import { StatImageComponent } from './profile/personal-info/stat-image.component
     HeaderComponent,
     MainLayoutComponent,
     ProfileComponent,
-    StatImageComponent
+    StatImageComponent,
+    EditEmailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,8 @@ import { StatImageComponent } from './profile/personal-info/stat-image.component
     TabMenuModule,
     MenuModule,
     SelectButtonModule,
+    DialogModule,
+    ToastModule,
   ],
   providers: [
     {

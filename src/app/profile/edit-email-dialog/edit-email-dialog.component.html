@@ -1,0 +1,43 @@
+<p-dialog (visibleChange)="visibleChange.emit($event)"
+          [baseZIndex]="10000"
+          [header]="'profile.email.header'|translate"
+          [style]="{width: '50vw'}"
+          [visible]="visible"
+
+>
+  <div class="container p-d-flex p-ai-center">
+      <span class="p-float-label p-mt-2">
+        <input [class.p-invalid]="emailInput.invalid && emailInput.touched"
+               [formControl]="emailInput"
+               aria-describedby="email-help"
+               id="email"
+               pInputText
+               type="email"
+        >
+        <label for="email">Email</label>
+        <small
+          *ngIf="emailInput.invalid && emailInput.touched"
+          class="p-invalid" id="email-help">
+            <span *ngIf="emailInput.errors?.required">
+          {{"connexion.errors.emailRequired" | translate}}
+            </span>
+          <span *ngIf="emailInput.errors?.email">
+         {{"connexion.errors.invalidEmailFormat" | translate}}
+            </span>
+          </small>
+      </span>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="(!(emailInput.invalid || !emailInput.dirty)) && submitEmail.emit(emailInput.value)"
+      [disabled]="emailInput.invalid || !emailInput.dirty"
+      [label]="'profile.email.save' | translate"
+      icon="pi pi-check"
+      styleClass="p-button-text"></p-button>
+    <p-button
+      (click)="cancelEditEmail()"
+      [label]="'profile.email.cancel' | translate"
+      icon="pi pi-times"
+      styleClass="p-button-text p-button-danger"></p-button>
+  </ng-template>
+</p-dialog>

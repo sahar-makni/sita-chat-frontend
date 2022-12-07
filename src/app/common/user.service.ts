@@ -2,13 +2,13 @@ import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SignInRequest, SignInResponse, SignInSuccessResponse} from './user.type';
 import {environment} from '../../environments/environment';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
 import {tap} from 'rxjs/operators';
 import {ACCESS_TOKEN} from '../utils/const/general';
 import {Router} from '@angular/router';
 import {PATHS} from '../utils/const/paths';
-import {ThemeOption, ThemeService} from './theme.service';
+import {ThemeService} from './theme.service';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -38,4 +38,8 @@ export class UserService {
     }, 10);
   }
 
+  updateEmail(email: string): Observable<boolean> {
+    // return throwError(new Error('Failed to update email'));
+    return of(true);
+  }
 }

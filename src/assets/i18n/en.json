@@ -35,7 +35,10 @@
       "roomsCount": "Number of message:"
     },
     "email": {
-      "label" : "Email:"
+      "label" : "Email:",
+      "error": "An error has accrued while updating your email.",
+      "success": "Your email has been successfully updated!",
+      "header": "Update email"
     },
     "password": {
       "edit": "Change password"

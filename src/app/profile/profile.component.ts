@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {ThemeOption, ThemeService} from '../common/theme.service';
+import {UserService} from '../common/user.service';
+import {MessageService} from 'primeng-lts/api';
 
 export type Languages = 'EN' | 'FR';
 
@@ -8,7 +10,8 @@ export type Languages = 'EN' | 'FR';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  providers: [MessageService],
 })
 export class ProfileComponent implements OnInit {
 
@@ -16,9 +19,14 @@ export class ProfileComponent implements OnInit {
   languages: { label: string, value: string }[];
   selectedTheme: ThemeOption = 'DARK';
   selectedLanguage: Languages = 'EN';
+  showEditEmailDialog = false;
+
 
   constructor(private readonly translateService: TranslateService,
               private readonly themeService: ThemeService,
+              private readonly userService: UserService,
+              private readonly messageService: MessageService,
+
   ) {
   }
 
@@ -48,13 +56,27 @@ export class ProfileComponent implements OnInit {
     this.translateService.use(language.toLowerCase());
   }
 
-  editEmail(): void {
+  editEmail(email: string): void {
     // todo: open popup to edit email
-    console.log('edit email');
+    this.userService.updateEmail(email)
+      .subscribe(_ => {
+          this.showEditEmailDialog = false;
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translateService.instant('profile.email.success'),
+          });
+        },
+        _ => {
+          this.messageService.add({severity: 'error', summary: this.translateService.instant('profile.email.error')});
+        }
+      );
+
   }
 
   changePassword(): void {
     // todo: open popup to change password
     console.log('change password');
   }
+
+
 }
