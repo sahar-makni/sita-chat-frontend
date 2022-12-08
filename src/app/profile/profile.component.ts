@@ -6,6 +6,7 @@ import {MessageService} from 'primeng-lts/api';
 import {LangChangeEvent} from '@ngx-translate/core/lib/translate.service';
 import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
 import {USER_LANGUAGE} from '../utils/const/general';
+import {ChangePasswordRequest} from '../common/user.type';
 
 export type LanguageOption = 'EN' | 'FR';
 
@@ -94,7 +95,6 @@ export class ProfileComponent implements OnInit {
   }
 
   editEmail(email: string): void {
-    // todo: open popup to edit email
     this.userService.updateEmail(email)
       .subscribe(_ => {
           this.showEditEmailDialog = false;
@@ -110,13 +110,20 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  changePassword(): void {
-    // todo: open popup to change password
-    console.log('change password');
-  }
+  updatePassword(changePasswordRequest: ChangePasswordRequest): void {
+    this.userService.updatePassword(changePasswordRequest)
+      .subscribe(_ => {
+          this.showEditPasswordDialog = false;
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translateService.instant('profile.password.success'),
+          });
+        },
+        _ => {
+          this.messageService.add({severity: 'error', summary: this.translateService.instant('profile.password.error')});
+        }
+      );
 
 
-  updatePassword(password: { oldPassword: string; newPassword: string }): void {
-    console.log('updatePassword called with', password);
   }
 }

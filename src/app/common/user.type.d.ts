@@ -1,5 +1,5 @@
 import {ThemeOption} from './theme.service';
-import {LanguageOption} from "../profile/profile.component";
+import {LanguageOption} from '../profile/profile.component';
 
 export interface SignInRequest {
   email: string;
@@ -33,3 +33,13 @@ interface PatchUserBody {
 }
 
 export type PartialPatchUserBody = Partial<PatchUserBody>;
+
+
+export interface ChangePasswordRequest {
+  oldPassword: string;
+  newPassword: string;
+}
+
+export interface ChangePasswordResponse {
+  status: number; // I have no idea why i would need this
+}

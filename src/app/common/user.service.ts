@@ -1,11 +1,26 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {PartialPatchUserBody, SignInRequest, SignInResponse, SignInSuccessResponse, UserResponse} from './user.type';
+import {
+  ChangePasswordRequest, ChangePasswordResponse,
+  PartialPatchUserBody,
+  SignInRequest,
+  SignInResponse,
+  SignInSuccessResponse,
+  UserResponse
+} from './user.type';
 import {environment} from '../../environments/environment';
 import {forkJoin, Observable, of} from 'rxjs';
 import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
 import {catchError, delay, map, switchMap, tap} from 'rxjs/operators';
-import {ACCESS_TOKEN, USER_ID, USER_INFO, USER_LANGUAGE, USER_THEME, USER_WS_PATH} from '../utils/const/general';
+import {
+  ACCESS_TOKEN,
+  USER_ID,
+  USER_INFO,
+  USER_LANGUAGE,
+  USER_THEME,
+  USER_WS_PATH,
+  USER_WS_PATH_CHANGE_PASSWORD
+} from '../utils/const/general';
 import {Router} from '@angular/router';
 import {PATHS} from '../utils/const/paths';
 import {ThemeService} from './theme.service';
@@ -22,7 +37,7 @@ export class UserService {
     this.localStorage.setItem(USER_INFO, JSON.stringify(value));
   }
 
-   #user?: UserResponse;
+  #user?: UserResponse;
 
   constructor(private readonly httpClient: HttpClient,
               @Inject(WEB_LOCAL_STORAGE) private readonly localStorage: Storage,
@@ -97,5 +112,14 @@ export class UserService {
 
   getUserId(): number {
     return Number(this.localStorage.getItem(USER_ID));
+  }
+
+  updatePassword(changePasswordRequest: ChangePasswordRequest): Observable<boolean> {
+    const url = `${environment.baseUrl}${USER_WS_PATH}/${this.getUserId()}${USER_WS_PATH_CHANGE_PASSWORD}`;
+    return this.httpClient.post<ChangePasswordResponse>(url, changePasswordRequest)
+      .pipe(
+        switchMap(() => of(true)),
+        catchError(() => of(false))
+      );
   }
 }
