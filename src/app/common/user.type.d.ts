@@ -1,4 +1,5 @@
 import {ThemeOption} from './theme.service';
+import {LanguageOption} from "../profile/profile.component";
 
 export interface SignInRequest {
   email: string;
@@ -18,7 +19,7 @@ interface UserResponse {
   id: number;
   email: string;
   theme: ThemeOption;
-  language: string;
+  language: LanguageOption;
   roomsCount: number;
   messagesCount: number;
 }

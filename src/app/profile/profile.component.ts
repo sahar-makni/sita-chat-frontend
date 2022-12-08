@@ -4,7 +4,7 @@ import {ThemeOption, ThemeService} from '../common/theme.service';
 import {UserService} from '../common/user.service';
 import {MessageService} from 'primeng-lts/api';
 
-export type Languages = 'EN' | 'FR';
+export type LanguageOption = 'EN' | 'FR';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   themes: { label: string, value: string }[];
   languages: { label: string, value: string }[];
   selectedTheme: ThemeOption;
-  selectedLanguage: Languages = 'EN';
+  selectedLanguage: LanguageOption;
   showEditEmailDialog = false;
   showEditPasswordDialog: boolean;
 
@@ -33,6 +33,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedTheme = this.themeService.getTheme();
+    console.log(this.translateService.currentLang as LanguageOption);
+    this.selectedLanguage = this.translateService.currentLang as LanguageOption;
     this.setUpOptions();
   }
 
@@ -63,10 +65,21 @@ export class ProfileComponent implements OnInit {
       );
   }
 
-  handleSelectedLanguage(language: Languages): void {
+  handleSelectedLanguage(language: LanguageOption): void {
     console.log(language);
-    this.selectedLanguage = language;
-    this.translateService.use(language.toLowerCase());
+    this.selectedLanguage = language as LanguageOption;
+    this.translateService.use(language);
+    this.userService.patchUser(this.userService.getUserId(), {language})
+      .subscribe(_ => {
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translateService.instant('profile.language.success'),
+          });
+        },
+        _ => {
+          this.messageService.add({severity: 'error', summary: this.translateService.instant('profile.language.error')});
+        }
+      );
   }
 
   editEmail(email: string): void {
