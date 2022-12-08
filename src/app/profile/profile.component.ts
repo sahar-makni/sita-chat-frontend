@@ -30,6 +30,14 @@ export class ProfileComponent implements OnInit {
     return this.userService.user?.email ?? '';
   }
 
+  get userMessagesCount(): number {
+    return this.userService.user?.messagesCount ?? -1;
+  }
+
+  get userRoomsCount(): number {
+    return this.userService.user?.roomsCount ?? -1;
+  }
+
 
   constructor(private readonly translateService: TranslateService,
               private readonly themeService: ThemeService,
@@ -41,7 +49,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedTheme = this.themeService.getTheme();
-    this.translateService.onLangChange.subscribe((langChangeEvent: LangChangeEvent) => {
+    this.translateService.onLangChange.subscribe(() => {
       this.selectedLanguage = this.localStorage.getItem(USER_LANGUAGE) as LanguageOption;
     });
     this.selectedLanguage = this.localStorage.getItem(USER_LANGUAGE) as LanguageOption;
