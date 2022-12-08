@@ -96,37 +96,36 @@ export class ProfileComponent implements OnInit {
 
   editEmail(email: string): void {
     this.userService.updateEmail(email)
-      .subscribe(_ => {
-          this.showEditEmailDialog = false;
-          this.messageService.add({
-            severity: 'success',
-            summary: this.translateService.instant('profile.email.success'),
-          });
-        },
-        _ => {
-          this.messageService.add({severity: 'error', summary: this.translateService.instant('profile.email.error')});
+      .subscribe(success => {
+          if (success) {
+            this.showEditEmailDialog = false;
+            this.messageService.add({
+              severity: 'success',
+              summary: this.translateService.instant('profile.email.success'),
+            });
+          } else {
+            this.messageService.add({severity: 'error', summary: this.translateService.instant('profile.email.error')});
+          }
         }
       );
-
   }
 
   updatePassword(changePasswordRequest: ChangePasswordRequest): void {
     this.userService.updatePassword(changePasswordRequest)
-      .subscribe(_ => {
-          this.showEditPasswordDialog = false;
-          this.messageService.add({
-            severity: 'success',
-            summary: this.translateService.instant('profile.password.success'),
-          });
+      .subscribe(success => {
+          if (success) {
+            this.showEditPasswordDialog = false;
+            this.messageService.add({
+              severity: 'success',
+              summary: this.translateService.instant('profile.password.success'),
+            });
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: this.translateService.instant('profile.password.error')
+            });
+          }
         },
-        _ => {
-          this.messageService.add({
-            severity: 'error',
-            summary: this.translateService.instant('profile.password.error')
-          });
-        }
       );
-
-
   }
 }
