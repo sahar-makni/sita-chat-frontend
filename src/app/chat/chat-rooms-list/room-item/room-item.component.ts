@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-room-item',
@@ -9,7 +10,7 @@ export class RoomItemComponent implements OnInit {
 
   @Input() room: { id: number, name: string };
 
-  constructor() {
+  constructor(private readonly router: Router, private readonly route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -18,5 +19,10 @@ export class RoomItemComponent implements OnInit {
   addRemoveFromFavorites(roomId: number): void {
     console.log('addRemoveFromFavorites = ' + roomId);
     // todo: call the add remove room from favorite ws
+  }
+
+  selectChatRoom(): void {
+    console.log('selectChatRoom');
+    this.router.navigate([this.room.id], {relativeTo: this.route}).then();
   }
 }
