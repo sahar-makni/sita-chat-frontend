@@ -27,8 +27,8 @@ import {SelectButtonModule} from 'primeng-lts/selectbutton';
 import {StatImageComponent} from './profile/personal-info/stat-image.component';
 import {DialogModule} from 'primeng-lts/dialog';
 import {ToastModule} from 'primeng-lts/toast';
-import { EditEmailDialogComponent } from './profile/edit-email-dialog/edit-email-dialog.component';
-import { EditPasswordDialogComponent } from './profile/edit-password-dialog/edit-password-dialog.component';
+import {EditEmailDialogComponent} from './profile/edit-email-dialog/edit-email-dialog.component';
+import {EditPasswordDialogComponent} from './profile/edit-password-dialog/edit-password-dialog.component';
 
 
 @NgModule({
