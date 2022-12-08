@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
-import {WEB_LOCAL_STORAGE} from "../utils/providers/web-storage.provider";
-import {USER_THEME} from "../utils/const/general";
+import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
+import {USER_THEME} from '../utils/const/general';
 
 export type ThemeOption = 'ARYA_BLUE' | 'SAGA_BLUE';
 
@@ -17,7 +17,7 @@ export class ThemeService {
   constructor(@Inject(DOCUMENT) private document: Document,
               @Inject(WEB_LOCAL_STORAGE) private readonly localStorage: Storage,
   ) {
-    this.switchTheme(this.localStorage.getItem(USER_THEME) as ThemeOption);
+    this.switchTheme(this.getTheme());
   }
 
 
@@ -29,6 +29,12 @@ export class ThemeService {
 
     if (themeLink) {
       themeLink.href = this.THEME_MAP[theme] + '.css';
+      // update storage
+      this.localStorage.setItem(USER_THEME, theme);
     }
+  }
+
+  getTheme(): ThemeOption {
+    return this.localStorage.getItem(USER_THEME) as ThemeOption;
   }
 }

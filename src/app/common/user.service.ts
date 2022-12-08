@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 import {forkJoin, Observable, of} from 'rxjs';
 import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
 import {delay, map, switchMap, tap} from 'rxjs/operators';
-import {ACCESS_TOKEN, USER_LANGUAGE, USER_THEME, USER_WS_PATH} from '../utils/const/general';
+import {ACCESS_TOKEN, USER_LANGUAGE, USER_WS_PATH} from '../utils/const/general';
 import {Router} from '@angular/router';
 import {PATHS} from '../utils/const/paths';
 import {ThemeService} from './theme.service';
@@ -62,7 +62,6 @@ export class UserService {
 
   private setUserPreferences(userResponse: UserResponse): void {
     this.localStorage.setItem(USER_LANGUAGE, userResponse.language);
-    this.localStorage.setItem(USER_THEME, userResponse.theme);
     this.themeService.switchTheme(userResponse.theme);
     this.translateService.use(userResponse.language.toLowerCase());
   }

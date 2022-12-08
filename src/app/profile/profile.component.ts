@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
 
   themes: { label: string, value: string }[];
   languages: { label: string, value: string }[];
-  selectedTheme: ThemeOption = 'ARYA_BLUE';
+  selectedTheme: ThemeOption;
   selectedLanguage: Languages = 'EN';
   showEditEmailDialog = false;
   showEditPasswordDialog: boolean;
@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selectedTheme = this.themeService.getTheme();
     this.setUpOptions();
   }
 
