@@ -8,7 +8,20 @@ import {CustomValidators} from '../../utils/form/validator/confirmation.validato
   styleUrls: ['./edit-password-dialog.component.scss']
 })
 export class EditPasswordDialogComponent implements OnInit {
-  @Input() visible: boolean;
+  @Input()
+  get visible(): boolean {
+    return this._visible;
+  }
+
+  set visible(value: boolean) {
+    if (!value) {
+      this.form.reset();
+    }
+    this._visible = value;
+  }
+
+  // tslint:disable-next-line:variable-name
+  private _visible: boolean;
   @Output() visibleChange = new EventEmitter<boolean>();
   @Output() submitPassword = new EventEmitter<{ oldPassword: string, newPassword: string }>();
   form: FormGroup = this.fb.group({
@@ -26,7 +39,6 @@ export class EditPasswordDialogComponent implements OnInit {
   }
 
   cancelEditPassword(): void {
-    this.form.reset();
     this.visible = false;
     this.visibleChange.emit(false);
   }
