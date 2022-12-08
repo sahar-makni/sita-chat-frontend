@@ -31,6 +31,7 @@
             "styles": [
               "src/styles.scss",
               "src/_overrides.scss",
+              "src/_scrollbar.scss",
               "./node_modules/primeicons/primeicons.css",
               {
                 "input": "src/theme-arya-blue.scss",

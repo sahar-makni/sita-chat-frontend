@@ -7,17 +7,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ChatRoomsListComponent implements OnInit {
 
-  userRooms: { name: string }[] = [];
+  userRooms: { id: number, name: string }[] = [];
 
   constructor() {
   }
 
   ngOnInit(): void {
-    for (let i = 0; i < 100; i++) {
-      console.log(i);
-      this.userRooms.push({name: `room${[i]}`});
+    // this is just temporary
+    // todo: call get user rooms ws
+    for (let i = 0; i < 20; i++) {
+      this.userRooms.push({id: i, name: `room${[i]}`});
     }
-    console.log(this.userRooms);
   }
 
 }

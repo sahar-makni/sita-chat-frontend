@@ -7,10 +7,16 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class RoomItemComponent implements OnInit {
 
-  @Input() room: { name: string };
-  constructor() { }
+  @Input() room: { id: number, name: string };
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  addRemoveFromFavorites(roomId: number): void {
+    console.log('addRemoveFromFavorites = ' + roomId);
+    // todo: call the add remove room from favorite ws
+  }
 }
