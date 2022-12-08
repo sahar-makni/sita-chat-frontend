@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-chat-rooms-list',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatRoomsListComponent implements OnInit {
 
-  constructor() { }
+  userRooms: { name: string }[] = [];
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    for (let i = 0; i < 100; i++) {
+      console.log(i);
+      this.userRooms.push({name: `room${[i]}`});
+    }
+    console.log(this.userRooms);
   }
 
 }

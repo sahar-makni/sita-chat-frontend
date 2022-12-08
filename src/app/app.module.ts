@@ -32,6 +32,7 @@ import {EditPasswordDialogComponent} from './profile/edit-password-dialog/edit-p
 import { ChatRoomsListComponent } from './chat/chat-rooms-list/chat-rooms-list.component';
 import { ChatRoomContentComponent } from './chat/chat-room-content/chat-room-content.component';
 import {ScrollPanelModule} from 'primeng-lts/scrollpanel';
+import { RoomItemComponent } from './chat/chat-rooms-list/room-item/room-item.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {ScrollPanelModule} from 'primeng-lts/scrollpanel';
     EditEmailDialogComponent,
     EditPasswordDialogComponent,
     ChatRoomsListComponent,
-    ChatRoomContentComponent
+    ChatRoomContentComponent,
+    RoomItemComponent
   ],
     imports: [
         BrowserModule,
