@@ -29,6 +29,9 @@ import {DialogModule} from 'primeng-lts/dialog';
 import {ToastModule} from 'primeng-lts/toast';
 import {EditEmailDialogComponent} from './profile/edit-email-dialog/edit-email-dialog.component';
 import {EditPasswordDialogComponent} from './profile/edit-password-dialog/edit-password-dialog.component';
+import { ChatRoomsListComponent } from './chat/chat-rooms-list/chat-rooms-list.component';
+import { ChatRoomContentComponent } from './chat/chat-room-content/chat-room-content.component';
+import {ScrollPanelModule} from 'primeng-lts/scrollpanel';
 
 
 @NgModule({
@@ -41,36 +44,39 @@ import {EditPasswordDialogComponent} from './profile/edit-password-dialog/edit-p
     ProfileComponent,
     StatImageComponent,
     EditEmailDialogComponent,
-    EditPasswordDialogComponent
+    EditPasswordDialogComponent,
+    ChatRoomsListComponent,
+    ChatRoomContentComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'EN',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
-        deps: [HttpClient]
-      }
-    }),
-    FormsModule,
-    InputTextModule,
-    ButtonModule,
-    RippleModule,
-    PasswordModule,
-    ReactiveFormsModule,
-    MessagesModule,
-    MessageModule,
-    BrowserAnimationsModule,
-    MenubarModule,
-    TabMenuModule,
-    MenuModule,
-    SelectButtonModule,
-    DialogModule,
-    ToastModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            defaultLanguage: 'EN',
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
+                deps: [HttpClient]
+            }
+        }),
+        FormsModule,
+        InputTextModule,
+        ButtonModule,
+        RippleModule,
+        PasswordModule,
+        ReactiveFormsModule,
+        MessagesModule,
+        MessageModule,
+        BrowserAnimationsModule,
+        MenubarModule,
+        TabMenuModule,
+        MenuModule,
+        SelectButtonModule,
+        DialogModule,
+        ToastModule,
+        ScrollPanelModule,
+    ],
   providers: [
     {
       provide: WEB_LOCAL_STORAGE,
