@@ -24,3 +24,11 @@ interface UserResponse {
 }
 
 export  type SignInResponse = SignInSuccessResponse | SignInFailedResponse;
+
+interface PatchUserBody {
+  email: string;
+  theme: ThemeOption;
+  language: string;
+}
+
+export type PartialPatchUserBody = Partial<PatchUserBody>;

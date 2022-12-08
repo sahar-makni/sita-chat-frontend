@@ -50,6 +50,17 @@ export class ProfileComponent implements OnInit {
   handleSelectedTheme(theme: ThemeOption): void {
     this.selectedTheme = theme;
     this.themeService.switchTheme(theme);
+    this.userService.patchUser(this.userService.getUserId(), {theme})
+      .subscribe(_ => {
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translateService.instant('profile.theme.success'),
+          });
+        },
+        _ => {
+          this.messageService.add({severity: 'error', summary: this.translateService.instant('profile.theme.error')});
+        }
+      );
   }
 
   handleSelectedLanguage(language: Languages): void {

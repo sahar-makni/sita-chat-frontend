@@ -1,11 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {SignInRequest, SignInResponse, SignInSuccessResponse, UserResponse} from './user.type';
+import {PartialPatchUserBody, SignInRequest, SignInResponse, SignInSuccessResponse, UserResponse} from './user.type';
 import {environment} from '../../environments/environment';
 import {forkJoin, Observable, of} from 'rxjs';
 import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
 import {delay, map, switchMap, tap} from 'rxjs/operators';
-import {ACCESS_TOKEN, USER_LANGUAGE, USER_WS_PATH} from '../utils/const/general';
+import {ACCESS_TOKEN, USER_ID, USER_LANGUAGE, USER_WS_PATH} from '../utils/const/general';
 import {Router} from '@angular/router';
 import {PATHS} from '../utils/const/paths';
 import {ThemeService} from './theme.service';
@@ -31,6 +31,7 @@ export class UserService {
           return forkJoin([of(signInSuccessResponse), this.getUser(signInSuccessResponse.accessToken)]);
         }),
         tap(([signInSuccessResponse, userResponse]: [SignInSuccessResponse, UserResponse]) => {
+          this.localStorage.setItem(USER_ID, signInSuccessResponse.accessToken);
           this.setUserPreferences(userResponse);
         }),
         delay(10),
@@ -64,5 +65,13 @@ export class UserService {
     this.localStorage.setItem(USER_LANGUAGE, userResponse.language);
     this.themeService.switchTheme(userResponse.theme);
     this.translateService.use(userResponse.language.toLowerCase());
+  }
+
+  patchUser(userId: number, body: PartialPatchUserBody): Observable<UserResponse> {
+    return this.httpClient.patch<UserResponse>(`${environment.baseUrl}${USER_WS_PATH}/${userId}`, body);
+  }
+
+  getUserId(): number {
+    return Number(this.localStorage.getItem(USER_ID));
   }
 }
