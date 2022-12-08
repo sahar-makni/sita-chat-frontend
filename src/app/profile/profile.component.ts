@@ -25,7 +25,8 @@ export class ProfileComponent implements OnInit {
   selectedLanguage: LanguageOption;
   showEditEmailDialog = false;
   showEditPasswordDialog: boolean;
-  get userEmail(): string{
+
+  get userEmail(): string {
     return this.userService.user?.email ?? '';
   }
 
@@ -40,13 +41,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedTheme = this.themeService.getTheme();
-    console.log(this.translateService.currentLang as LanguageOption);
     this.translateService.onLangChange.subscribe((langChangeEvent: LangChangeEvent) => {
-      console.log(langChangeEvent);
       this.selectedLanguage = this.localStorage.getItem(USER_LANGUAGE) as LanguageOption;
     });
-
     this.selectedLanguage = this.localStorage.getItem(USER_LANGUAGE) as LanguageOption;
+    this.translateService.use(this.selectedLanguage);
     this.setUpOptions();
   }
 
@@ -78,18 +77,19 @@ export class ProfileComponent implements OnInit {
   }
 
   handleSelectedLanguage(language: LanguageOption): void {
-    console.log(language);
-    this.selectedLanguage = language as LanguageOption;
-    this.translateService.use(language);
     this.userService.patchUser(this.userService.getUserId(), {language})
       .subscribe(_ => {
+          this.translateService.use(language);
           this.messageService.add({
             severity: 'success',
             summary: this.translateService.instant('profile.language.success'),
           });
         },
         _ => {
-          this.messageService.add({severity: 'error', summary: this.translateService.instant('profile.language.error')});
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translateService.instant('profile.language.error')
+          });
         }
       );
   }
@@ -120,7 +120,10 @@ export class ProfileComponent implements OnInit {
           });
         },
         _ => {
-          this.messageService.add({severity: 'error', summary: this.translateService.instant('profile.password.error')});
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translateService.instant('profile.password.error')
+          });
         }
       );
 
