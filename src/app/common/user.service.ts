@@ -29,15 +29,17 @@ import {TranslateService} from '@ngx-translate/core';
 @Injectable({providedIn: 'root'})
 export class UserService {
   get user(): UserResponse | undefined {
-    return this.#user || JSON.parse(this.localStorage.getItem(USER_INFO));
+    return this._user || JSON.parse(this.localStorage.getItem(USER_INFO));
   }
 
   set user(value: UserResponse | undefined) {
-    this.#user = value;
+    this._user = value;
     this.localStorage.setItem(USER_INFO, JSON.stringify(value));
   }
 
-  #user?: UserResponse;
+  // this is a workaround to allow variables starting with underscore on the IDE
+  // tslint:disable-next-line:variable-name
+  _user?: UserResponse;
 
   constructor(private readonly httpClient: HttpClient,
               @Inject(WEB_LOCAL_STORAGE) private readonly localStorage: Storage,
