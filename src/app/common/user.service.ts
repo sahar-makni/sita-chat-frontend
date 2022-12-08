@@ -4,8 +4,8 @@ import {PartialPatchUserBody, SignInRequest, SignInResponse, SignInSuccessRespon
 import {environment} from '../../environments/environment';
 import {forkJoin, Observable, of} from 'rxjs';
 import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
-import {delay, map, switchMap, tap} from 'rxjs/operators';
-import {ACCESS_TOKEN, USER_ID, USER_LANGUAGE, USER_THEME, USER_WS_PATH} from '../utils/const/general';
+import {catchError, delay, map, switchMap, tap} from 'rxjs/operators';
+import {ACCESS_TOKEN, USER_ID, USER_INFO, USER_LANGUAGE, USER_THEME, USER_WS_PATH} from '../utils/const/general';
 import {Router} from '@angular/router';
 import {PATHS} from '../utils/const/paths';
 import {ThemeService} from './theme.service';
@@ -13,6 +13,17 @@ import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
+  get user(): UserResponse | undefined {
+    return this.#user || JSON.parse(this.localStorage.getItem(USER_INFO));
+  }
+
+  set user(value: UserResponse | undefined) {
+    this.#user = value;
+    this.localStorage.setItem(USER_INFO, JSON.stringify(value));
+  }
+
+   #user?: UserResponse;
+
   constructor(private readonly httpClient: HttpClient,
               @Inject(WEB_LOCAL_STORAGE) private readonly localStorage: Storage,
               private readonly router: Router,
@@ -35,13 +46,15 @@ export class UserService {
           this.setUserPreferences(userResponse);
         }),
         delay(10),
-        map(([signInSuccessResponse, userResponse]: [SignInSuccessResponse, UserResponse]) => {
+        map(([signInSuccessResponse]: [SignInSuccessResponse, UserResponse]) => {
           return signInSuccessResponse;
         }));
   }
 
   getUser(accessToken: string): Observable<UserResponse> {
-    return this.httpClient.get<UserResponse>(`${environment.baseUrl}${USER_WS_PATH}/${accessToken}`);
+    return this.httpClient.get<UserResponse>(`${environment.baseUrl}${USER_WS_PATH}/${accessToken}`).pipe(
+
+    );
   }
 
   signOut(): void {
@@ -58,13 +71,17 @@ export class UserService {
 
   updateEmail(email: string): Observable<boolean> {
     // return throwError(new Error('Failed to update email'));
-    return of(true);
+    return this.patchUser(this.getUserId(), {email}).pipe(
+      switchMap(() => of(true)),
+      catchError(() => of(false))
+    );
   }
 
   private setUserPreferences(userResponse: UserResponse): void {
     this.localStorage.setItem(USER_LANGUAGE, userResponse.language);
     this.themeService.switchTheme(userResponse.theme);
     this.translateService.use(userResponse.language);
+    this.user = userResponse;
   }
 
   patchUser(userId: number, body: PartialPatchUserBody): Observable<UserResponse> {
@@ -73,6 +90,7 @@ export class UserService {
         this.localStorage.setItem(USER_ID, String(userResponse.id));
         this.localStorage.setItem(USER_LANGUAGE, userResponse.language);
         this.localStorage.setItem(USER_THEME, userResponse.theme);
+        this.user = userResponse;
       })
     );
   }

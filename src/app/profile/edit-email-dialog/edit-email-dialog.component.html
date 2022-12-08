@@ -13,6 +13,7 @@
                aria-describedby="email-help"
                id="email"
                pInputText
+               [formControl]="emailInput"
                type="email"
         >
         <label for="email">{{ 'profile.email.label' | translate}}</label>

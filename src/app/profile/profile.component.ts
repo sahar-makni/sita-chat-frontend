@@ -3,9 +3,9 @@ import {TranslateService} from '@ngx-translate/core';
 import {ThemeOption, ThemeService} from '../common/theme.service';
 import {UserService} from '../common/user.service';
 import {MessageService} from 'primeng-lts/api';
-import {LangChangeEvent} from "@ngx-translate/core/lib/translate.service";
-import {WEB_LOCAL_STORAGE} from "../utils/providers/web-storage.provider";
-import {USER_LANGUAGE} from "../utils/const/general";
+import {LangChangeEvent} from '@ngx-translate/core/lib/translate.service';
+import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
+import {USER_LANGUAGE} from '../utils/const/general';
 
 export type LanguageOption = 'EN' | 'FR';
 
@@ -24,6 +24,9 @@ export class ProfileComponent implements OnInit {
   selectedLanguage: LanguageOption;
   showEditEmailDialog = false;
   showEditPasswordDialog: boolean;
+  get userEmail(): string{
+    return this.userService.user?.email ?? '';
+  }
 
 
   constructor(private readonly translateService: TranslateService,
