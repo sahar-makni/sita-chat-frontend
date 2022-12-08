@@ -1,4 +1,4 @@
-import {ThemeOption} from "./theme.service";
+import {ThemeOption} from './theme.service';
 
 export interface SignInRequest {
   email: string;
