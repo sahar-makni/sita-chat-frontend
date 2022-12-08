@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
 
   themes: { label: string, value: string }[];
   languages: { label: string, value: string }[];
-  selectedTheme: ThemeOption = 'DARK';
+  selectedTheme: ThemeOption = 'ARYA_BLUE';
   selectedLanguage: Languages = 'EN';
   showEditEmailDialog = false;
   showEditPasswordDialog: boolean;
@@ -37,8 +37,8 @@ export class ProfileComponent implements OnInit {
 
   setUpOptions(): void {
     this.themes = [
-      {label: this.translateService.instant('profile.theme.dark'), value: 'DARK'},
-      {label: this.translateService.instant('profile.theme.light'), value: 'LIGHT'}
+      {label: this.translateService.instant('profile.theme.dark'), value: 'ARYA_BLUE'},
+      {label: this.translateService.instant('profile.theme.light'), value: 'SAGA_BLUE'}
     ];
     this.languages = [
       {label: this.translateService.instant('profile.language.en'), value: 'EN'},

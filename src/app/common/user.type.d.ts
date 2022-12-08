@@ -1,3 +1,5 @@
+import {ThemeOption} from "./theme.service";
+
 export interface SignInRequest {
   email: string;
   password: string;
@@ -12,4 +14,13 @@ interface SignInFailedResponse {
   error: string;
 }
 
-export  type SignInResponse = SignInSuccessResponse | SignInFailedResponse
+interface UserResponse {
+  id: number;
+  email: string;
+  theme: ThemeOption;
+  language: string;
+  roomsCount: number;
+  messagesCount: number;
+}
+
+export  type SignInResponse = SignInSuccessResponse | SignInFailedResponse;

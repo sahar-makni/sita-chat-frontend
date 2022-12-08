@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PATHS} from '../utils/const/paths';
 import {Title} from '@angular/platform-browser';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SignInResponse} from '../common/user.type';
+import {SignInResponse, SignInSuccessResponse} from '../common/user.type';
 import {MessageService} from 'primeng-lts/api';
 import {TranslateService} from '@ngx-translate/core';
 import {Router} from '@angular/router';
@@ -45,8 +45,8 @@ export class SignInComponent implements OnInit {
   signIn(): void {
     this.messageService.clear();
     this.userService.signIn(this.form.value).subscribe({
-      next: (signInResponse: SignInResponse) => {
-        console.log('Welcome ', signInResponse);
+      next: (signInSuccessResponse: SignInSuccessResponse) => {
+        console.log('Welcome ', signInSuccessResponse);
         this.messageService.add({
           severity: 'success',
           summary: this.translateService.instant('connexion.messages.signInSuccess')

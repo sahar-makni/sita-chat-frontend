@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-export type ThemeOption = 'DARK' | 'LIGHT';
+export type ThemeOption = 'ARYA_BLUE' | 'SAGA_BLUE';
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
 THEME_MAP = {
-  DARK: 'arya-blue',
-  LIGHT: 'saga-blue',
+  ARYA_BLUE: 'arya-blue',
+  SAGA_BLUE: 'saga-blue',
 };
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
