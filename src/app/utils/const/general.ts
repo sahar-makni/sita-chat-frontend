@@ -5,3 +5,6 @@ export const USER_LANGUAGE = 'user-language';
 export const USER_THEME = 'user-theme';
 export const USER_WS_PATH = '/users';
 export const USER_WS_PATH_CHANGE_PASSWORD = '/changePassword';
+
+
+export const ROOM_WS_PATH = '/rooms';

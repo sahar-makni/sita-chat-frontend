@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputTextModule} from 'primeng-lts/inputtext';
@@ -29,10 +29,11 @@ import {DialogModule} from 'primeng-lts/dialog';
 import {ToastModule} from 'primeng-lts/toast';
 import {EditEmailDialogComponent} from './profile/edit-email-dialog/edit-email-dialog.component';
 import {EditPasswordDialogComponent} from './profile/edit-password-dialog/edit-password-dialog.component';
-import { ChatRoomsListComponent } from './chat/chat-rooms-list/chat-rooms-list.component';
-import { ChatRoomContentComponent } from './chat/chat-room-content/chat-room-content.component';
+import {ChatRoomListComponent} from './chat/chat-rooms-list/chat-room-list.component';
+import {ChatRoomContentComponent} from './chat/chat-room-content/chat-room-content.component';
 import {ScrollPanelModule} from 'primeng-lts/scrollpanel';
-import { RoomItemComponent } from './chat/chat-rooms-list/room-item/room-item.component';
+import {RoomItemComponent} from './chat/chat-rooms-list/room-item/room-item.component';
+import {AccessTokenInterceptor} from './utils/interceptor/access-token.interceptor';
 
 
 @NgModule({
@@ -46,39 +47,39 @@ import { RoomItemComponent } from './chat/chat-rooms-list/room-item/room-item.co
     StatImageComponent,
     EditEmailDialogComponent,
     EditPasswordDialogComponent,
-    ChatRoomsListComponent,
+    ChatRoomListComponent,
     ChatRoomContentComponent,
     RoomItemComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        TranslateModule.forRoot({
-            defaultLanguage: 'EN',
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
-                deps: [HttpClient]
-            }
-        }),
-        FormsModule,
-        InputTextModule,
-        ButtonModule,
-        RippleModule,
-        PasswordModule,
-        ReactiveFormsModule,
-        MessagesModule,
-        MessageModule,
-        BrowserAnimationsModule,
-        MenubarModule,
-        TabMenuModule,
-        MenuModule,
-        SelectButtonModule,
-        DialogModule,
-        ToastModule,
-        ScrollPanelModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'EN',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
+        deps: [HttpClient]
+      }
+    }),
+    FormsModule,
+    InputTextModule,
+    ButtonModule,
+    RippleModule,
+    PasswordModule,
+    ReactiveFormsModule,
+    MessagesModule,
+    MessageModule,
+    BrowserAnimationsModule,
+    MenubarModule,
+    TabMenuModule,
+    MenuModule,
+    SelectButtonModule,
+    DialogModule,
+    ToastModule,
+    ScrollPanelModule,
+  ],
   providers: [
     {
       provide: WEB_LOCAL_STORAGE,
@@ -91,6 +92,10 @@ import { RoomItemComponent } from './chat/chat-rooms-list/room-item/room-item.co
       useFactory: () => {
         return sessionStorage;
       }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AccessTokenInterceptor, multi: true
     }
   ],
   bootstrap: [AppComponent]

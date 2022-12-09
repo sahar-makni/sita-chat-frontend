@@ -1,19 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
+import {ChatRoomResponse} from '../../chat-room.type';
 
 @Component({
   selector: 'app-room-item',
   templateUrl: './room-item.component.html',
   styleUrls: ['./room-item.component.scss']
 })
-export class RoomItemComponent implements OnInit {
+export class RoomItemComponent {
 
-  @Input() room: { id: number, name: string };
+  @Input() room: ChatRoomResponse;
 
   constructor(private readonly router: Router, private readonly route: ActivatedRoute) {
-  }
-
-  ngOnInit(): void {
   }
 
   addRemoveFromFavorites(roomId: number): void {
