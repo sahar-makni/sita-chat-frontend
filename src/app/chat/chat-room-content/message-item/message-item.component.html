@@ -1,6 +1,4 @@
-<div
-     class="p-d-flex p-flex-column message-container p-my-2 p-p-1 "
->
+<div class="p-d-flex p-flex-column message-container p-my-2 p-p-1 ">
   <span> {{messageText}}</span>
-  <span> {{messageDate}}</span>
+  <span> {{messageDate | date  :'d/M/yy, h:mm a'}}</span>
 </div>
