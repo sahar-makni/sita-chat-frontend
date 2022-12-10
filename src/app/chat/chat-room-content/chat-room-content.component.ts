@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {MessageResponse} from "../chat-room.type";
-import {ChatRoomService} from "../chat-room.service";
-import {UserService} from "../../common/user.service";
-import {MessageItemPosition} from "./message-item/message-item.component";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {MessageResponse} from '../chat-room.type';
+import {ChatRoomService} from '../chat-room.service';
+import {UserService} from '../../common/user.service';
+import {MessageItemPosition} from './message-item/message-item.component';
+import {ScrollPanel} from 'primeng/scrollpanel';
 
 @Component({
   selector: 'app-chat-room-content',
@@ -16,6 +17,8 @@ export class ChatRoomContentComponent implements OnInit {
   roomMessages: MessageResponse[] = [];
   newMessage: string;
 
+  // TODO : find a correct way to scroll to bottom without using large numbers
+  @ViewChild(ScrollPanel) scrollPanel: ScrollPanel;
   constructor(private readonly route: ActivatedRoute,
               private readonly chatRoomService: ChatRoomService,
               private readonly userService: UserService,
