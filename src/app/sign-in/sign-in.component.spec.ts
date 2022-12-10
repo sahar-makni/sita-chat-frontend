@@ -3,6 +3,11 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {SignInComponent} from './sign-in.component';
 
 import {Pipe, PipeTransform} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
+import {TranslateService} from '@ngx-translate/core';
+import {FormBuilder} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {UserService} from '../common/user.service';
 
 
 @Pipe({name: 'translate'})
@@ -18,7 +23,12 @@ describe(SignInComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SignInComponent, TranslationPipeMock]
+      declarations: [SignInComponent, TranslationPipeMock],
+      imports: [ RouterTestingModule],
+      providers: [{provide: TranslateService , useValue: {}}, FormBuilder,
+        {provide: HttpClient, useValue: {}},
+        {provide: UserService, useValue: {}},
+      ],
     }).compileComponents();
   });
 
