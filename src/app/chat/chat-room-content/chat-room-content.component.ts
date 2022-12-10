@@ -5,6 +5,7 @@ import {ChatRoomService} from '../chat-room.service';
 import {UserService} from '../../common/user.service';
 import {MessageItemPosition} from './message-item/message-item.component';
 import {ScrollPanel} from 'primeng/scrollpanel';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-chat-room-content',
@@ -19,6 +20,8 @@ export class ChatRoomContentComponent implements OnInit {
 
   // TODO : find a correct way to scroll to bottom without using large numbers
   @ViewChild(ScrollPanel) scrollPanel: ScrollPanel;
+  private subscription?: Subscription;
+
   constructor(private readonly route: ActivatedRoute,
               private readonly chatRoomService: ChatRoomService,
               private readonly userService: UserService,
@@ -33,7 +36,8 @@ export class ChatRoomContentComponent implements OnInit {
   }
 
   private loadMessages(roomId: number): void {
-    this.chatRoomService.getRoomMessages(roomId).subscribe((messages: MessageResponse[]) => this.roomMessages = messages
+    this.subscription?.unsubscribe();
+    this.subscription = this.chatRoomService.getRoomMessages(roomId).subscribe((messages: MessageResponse[]) => this.roomMessages = messages
     );
   }
 

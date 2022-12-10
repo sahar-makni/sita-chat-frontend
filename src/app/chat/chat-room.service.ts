@@ -22,6 +22,8 @@ export class ChatRoomService {
 
   getRoomMessages(roomId: number): Observable<MessageResponse[]> {
     const url = `${environment.baseUrl}${ROOM_WS_PATH}/${roomId}${MESSAGES_WS_PATH}`;
+    // FIXME: polling the backend is not a good solution.
+    //  Ideally, this should go through a websocket.
     return interval(1000).pipe(
       switchMap(() => {
         return this.httpClient.get<MessageResponse[]>(url);
