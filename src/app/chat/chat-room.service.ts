@@ -24,4 +24,8 @@ export class ChatRoomService {
     return this.httpClient.get<MessageResponse[]>(url);
   }
 
+  sendMessage(roomId: number, newMessage: string): Observable<void> {
+    const url = `${environment.baseUrl}${ROOM_WS_PATH}/${roomId}${MESSAGES_WS_PATH}`;
+    return this.httpClient.post<void>(url, {text: newMessage});
+  }
 }

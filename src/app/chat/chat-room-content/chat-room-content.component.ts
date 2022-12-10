@@ -14,6 +14,7 @@ export class ChatRoomContentComponent implements OnInit {
   roomId: number;
 
   roomMessages: MessageResponse[] = [];
+  newMessage: string;
 
   constructor(private readonly route: ActivatedRoute,
               private readonly chatRoomService: ChatRoomService,
@@ -35,5 +36,10 @@ export class ChatRoomContentComponent implements OnInit {
 
   messagePosition(senderId: number): MessageItemPosition {
     return (senderId === this.userService.getUserId()) ? 'LEFT' : 'RIGHT';
+  }
+
+  sendMessage(): void {
+    this.chatRoomService.sendMessage(this.roomId, this.newMessage).subscribe();
+    this.newMessage = '';
   }
 }
