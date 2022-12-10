@@ -2,6 +2,8 @@ export interface ChatRoomResponse {
   id: number;
   name: string;
   userIds: number[];
+  lastMessageTime: Date;
+
 }
 
 export interface MessageResponse {

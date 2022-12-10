@@ -8,7 +8,7 @@
       <em class="p-col-1 pi pi-heart" (click)="addRemoveFromFavorites(room.id)"></em>
     </div>
     <div class="p-ml-auto">
-      00:00 <!-- this represents the last message time-->
+      {{ room.lastMessageTime | date :'d/M/yy, h:mm a'}}
     </div>
 
   </div>
