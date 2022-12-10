@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChatRoomResponse} from '../../chat-room.type';
+import {ChatRoomService} from '../../chat-room.service';
 
 @Component({
   selector: 'app-room-item',
@@ -11,7 +12,12 @@ export class RoomItemComponent {
 
   @Input() room: ChatRoomResponse;
 
-  constructor(private readonly router: Router, private readonly route: ActivatedRoute) {
+
+  constructor(
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly chatRoomService: ChatRoomService,
+  ) {
   }
 
   addRemoveFromFavorites(roomId: number): void {
@@ -20,7 +26,7 @@ export class RoomItemComponent {
   }
 
   selectChatRoom(): void {
-    console.log('selectChatRoom');
+    this.chatRoomService.getChatRoomUsers(this.room);
     this.router.navigate([this.room.id], {relativeTo: this.route}).then();
   }
 }

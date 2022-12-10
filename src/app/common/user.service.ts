@@ -69,9 +69,7 @@ export class UserService {
   }
 
   getUser(accessToken: string): Observable<UserResponse> {
-    return this.httpClient.get<UserResponse>(`${environment.baseUrl}${USER_WS_PATH}/${accessToken}`).pipe(
-
-    );
+    return this.httpClient.get<UserResponse>(`${environment.baseUrl}${USER_WS_PATH}/${accessToken}`);
   }
 
   signOut(): void {
