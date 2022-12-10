@@ -3,3 +3,11 @@ export interface ChatRoomResponse {
   name: string;
   userIds: number[];
 }
+
+export interface MessageResponse {
+  id: number;
+  roomId: number;
+  senderId: number;
+  text: string;
+  sendDate: Date;
+}

@@ -34,6 +34,7 @@ import {ChatRoomContentComponent} from './chat/chat-room-content/chat-room-conte
 import {ScrollPanelModule} from 'primeng-lts/scrollpanel';
 import {RoomItemComponent} from './chat/chat-rooms-list/room-item/room-item.component';
 import {AccessTokenInterceptor} from './utils/interceptor/access-token.interceptor';
+import { MessageItemComponent } from './chat/chat-room-content/message-item/message-item.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {AccessTokenInterceptor} from './utils/interceptor/access-token.intercept
     EditPasswordDialogComponent,
     ChatRoomListComponent,
     ChatRoomContentComponent,
-    RoomItemComponent
+    RoomItemComponent,
+    MessageItemComponent
   ],
   imports: [
     BrowserModule,

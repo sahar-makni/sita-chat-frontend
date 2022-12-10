@@ -8,3 +8,4 @@ export const USER_WS_PATH_CHANGE_PASSWORD = '/changePassword';
 
 
 export const ROOM_WS_PATH = '/rooms';
+export const MESSAGES_WS_PATH = '/messages';
