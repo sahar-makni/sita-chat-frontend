@@ -1,7 +1,8 @@
 import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
 import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
-import {USER_THEME} from '../utils/const/general';
+import {USER_INFO} from '../utils/const/general';
+import {UserResponse} from './user.type';
 
 export type ThemeOption = 'ARYA_BLUE' | 'SAGA_BLUE';
 
@@ -30,11 +31,14 @@ export class ThemeService {
     if (themeLink) {
       themeLink.href = this.THEME_MAP[theme] + '.css';
       // update storage
-      this.localStorage.setItem(USER_THEME, theme);
+      const user = JSON.parse(this.localStorage.getItem(USER_INFO)) as UserResponse;
+      user.theme = theme;
+      this.localStorage.setItem(USER_INFO, JSON.stringify(user));
     }
   }
 
   getTheme(): ThemeOption {
-    return this.localStorage.getItem(USER_THEME) as ThemeOption;
+    const user = JSON.parse(this.localStorage.getItem(USER_INFO)) as UserResponse;
+    return user.theme;
   }
 }

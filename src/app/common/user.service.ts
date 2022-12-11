@@ -14,10 +14,7 @@ import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
 import {catchError, delay, map, switchMap, tap} from 'rxjs/operators';
 import {
   ACCESS_TOKEN,
-  USER_ID,
   USER_INFO,
-  USER_LANGUAGE,
-  USER_THEME,
   USER_WS_PATH,
   USER_WS_PATH_CHANGE_PASSWORD
 } from '../utils/const/general';
@@ -58,11 +55,10 @@ export class UserService {
         switchMap((signInSuccessResponse: SignInSuccessResponse) => {
           return forkJoin([of(signInSuccessResponse), this.getUser(signInSuccessResponse.accessToken)]);
         }),
-        tap(([signInSuccessResponse, userResponse]: [SignInSuccessResponse, UserResponse]) => {
-          this.localStorage.setItem(USER_ID, signInSuccessResponse.accessToken);
+        tap(([_, userResponse]: [SignInSuccessResponse, UserResponse]) => {
           this.setUserPreferences(userResponse);
         }),
-        delay(10),
+        delay(10), // add a small delay allowing enough time for the theme to be applied
         map(([signInSuccessResponse]: [SignInSuccessResponse, UserResponse]) => {
           return signInSuccessResponse;
         }));
@@ -93,7 +89,6 @@ export class UserService {
   }
 
   private setUserPreferences(userResponse: UserResponse): void {
-    this.localStorage.setItem(USER_LANGUAGE, userResponse.language);
     this.themeService.switchTheme(userResponse.theme);
     this.translateService.use(userResponse.language);
     this.user = userResponse;
@@ -102,16 +97,13 @@ export class UserService {
   patchUser(userId: number, body: PartialPatchUserBody): Observable<UserResponse> {
     return this.httpClient.patch<UserResponse>(`${environment.baseUrl}${USER_WS_PATH}/${userId}`, body).pipe(
       tap((userResponse: UserResponse) => {
-        this.localStorage.setItem(USER_ID, String(userResponse.id));
-        this.localStorage.setItem(USER_LANGUAGE, userResponse.language);
-        this.localStorage.setItem(USER_THEME, userResponse.theme);
         this.user = userResponse;
       })
     );
   }
 
   getUserId(): number {
-    return Number(this.localStorage.getItem(USER_ID));
+    return this.user.id;
   }
 
   updatePassword(changePasswordRequest: ChangePasswordRequest): Observable<boolean> {

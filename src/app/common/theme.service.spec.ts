@@ -1,5 +1,5 @@
 import {ThemeService} from './theme.service';
-import {USER_THEME} from '../utils/const/general';
+import {USER_INFO} from '../utils/const/general';
 
 // these are few tests that I would have written more if I had more time
 describe(ThemeService.name, () => {
@@ -8,8 +8,11 @@ describe(ThemeService.name, () => {
   let storageMock: jasmine.SpyObj<Storage>;
   beforeEach(() => {
     documentMock = jasmine.createSpyObj('document', ['getElementById']);
-    storageMock = jasmine.createSpyObj('localStorage', ['getItem', 'setItem']);
-
+    storageMock = jasmine.createSpyObj('localStorage',
+      {
+        getItem: JSON.stringify({theme: 'SAGA_BLUE'}),
+        setItem: undefined
+      });
     service = new ThemeService(documentMock, storageMock);
   });
 
@@ -18,22 +21,22 @@ describe(ThemeService.name, () => {
   });
   it('should get theme from local storage', () => {
     // GIVEN
-    storageMock.getItem.and.returnValue('ARYA_BLUE');
+    storageMock.getItem.and.returnValue(JSON.stringify({theme: 'ARYA_BLUE'}));
     // WHEN
     const theme = service.getTheme();
     // THEN
     expect(theme).toEqual('ARYA_BLUE');
-    expect(storageMock.getItem).toHaveBeenCalledWith(USER_THEME);
+    expect(storageMock.getItem).toHaveBeenCalledWith(USER_INFO);
   });
   it('should set the saved theme from local storage ', () => {
     // GIVEN
-    const linkElement = {} as HTMLLinkElement ;
+    const linkElement = {} as HTMLLinkElement;
     documentMock.getElementById.and.returnValue(linkElement);
-    storageMock.getItem.and.returnValue('ARYA_BLUE');
+    storageMock.getItem.and.returnValue(JSON.stringify({theme: 'ARYA_BLUE'}));
     // // WHEN
     service.switchTheme('SAGA_BLUE');
     // // THEN
-    expect(storageMock.setItem).toHaveBeenCalledWith(USER_THEME, 'SAGA_BLUE');
+    expect(storageMock.setItem).toHaveBeenCalledWith(USER_INFO, JSON.stringify({theme: 'SAGA_BLUE'}));
     expect(linkElement.href).toEqual('saga-blue.css');
   });
 });

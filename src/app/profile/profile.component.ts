@@ -1,11 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {ThemeOption, ThemeService} from '../common/theme.service';
 import {UserService} from '../common/user.service';
 import {MessageService} from 'primeng-lts/api';
-import {LangChangeEvent} from '@ngx-translate/core/lib/translate.service';
-import {WEB_LOCAL_STORAGE} from '../utils/providers/web-storage.provider';
-import {USER_LANGUAGE} from '../utils/const/general';
 import {ChangePasswordRequest} from '../common/user.type';
 
 export type LanguageOption = 'EN' | 'FR';
@@ -43,16 +40,15 @@ export class ProfileComponent implements OnInit {
               private readonly themeService: ThemeService,
               private readonly userService: UserService,
               private readonly messageService: MessageService,
-              @Inject(WEB_LOCAL_STORAGE) private readonly localStorage: Storage,
   ) {
   }
 
   ngOnInit(): void {
     this.selectedTheme = this.themeService.getTheme();
     this.translateService.onLangChange.subscribe(() => {
-      this.selectedLanguage = this.localStorage.getItem(USER_LANGUAGE) as LanguageOption;
+      this.selectedLanguage = this.userService.user.language;
     });
-    this.selectedLanguage = this.localStorage.getItem(USER_LANGUAGE) as LanguageOption;
+    this.selectedLanguage = this.userService.user.language;
     this.translateService.use(this.selectedLanguage);
     this.setUpOptions();
   }
