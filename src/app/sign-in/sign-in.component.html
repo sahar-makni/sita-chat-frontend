@@ -15,10 +15,10 @@
         <small
           *ngIf="form.controls.email.invalid && form.controls.email.touched"
           class="p-invalid" id="email-help">
-            <span *ngIf="form.controls.email.errors?.required">
+            <span *ngIf="form.controls.email.errors?.required" data-test-email-empty-message>
           {{"connexion.errors.emailRequired" | translate}}
             </span>
-          <span *ngIf="form.controls.email.errors?.email">
+          <span *ngIf="form.controls.email.errors?.email" data-test-email-format-message>
          {{"connexion.errors.invalidEmailFormat" | translate}}
 
             </span>
@@ -37,6 +37,7 @@
         <span
           *ngIf="form.controls.password.invalid && form.controls.password.touched && form.controls.password.errors?.required"
           class="p-invalid"
+          data-test-password-empty-message
         >{{"connexion.errors.passwordRequired" | translate}}</span>
         <label
           for="password">Password</label>
