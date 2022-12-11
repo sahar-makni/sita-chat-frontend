@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly title: Title,
+    private readonly activatedRoute: ActivatedRoute,
+
+  ) { }
 
   ngOnInit(): void {
+    this.title.setTitle(this.activatedRoute.snapshot.data.title);
   }
 
 }

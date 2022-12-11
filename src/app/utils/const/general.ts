@@ -1,5 +1,6 @@
 export const ACCESS_TOKEN = 'access-token';
 export const USER_INFO = 'user-info';
+export const SIGN_IN_WS_PATH = `/signin`;
 export const USER_WS_PATH = '/users';
 export const USER_WS_PATH_CHANGE_PASSWORD = '/changePassword';
 

@@ -13,9 +13,12 @@
 <div class="p-grid">
   <div class="p-col-12">
     <div class="p-inputgroup">
-      <input (keydown.enter)="sendMessage()" [(ngModel)]="newMessage" pInputText placeholder="Type your message here... "
-             type="text"
-
+      <input
+        (keydown.enter)="sendMessage()"
+        [(ngModel)]="newMessage"
+        [placeholder]="'chatRoom.input.placeholder' | translate"
+        pInputText
+        type="text"
       >
       <span (click)="sendMessage()" class="p-inputgroup-addon"><em class="pi pi-send"></em></span>
     </div>

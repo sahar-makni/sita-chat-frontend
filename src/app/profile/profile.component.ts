@@ -4,6 +4,8 @@ import {ThemeOption, ThemeService} from '../common/theme.service';
 import {UserService} from '../common/user.service';
 import {MessageService} from 'primeng-lts/api';
 import {ChangePasswordRequest} from '../common/user.type';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute} from '@angular/router';
 
 export type LanguageOption = 'EN' | 'FR';
 
@@ -11,7 +13,6 @@ export type LanguageOption = 'EN' | 'FR';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
   providers: [MessageService],
 })
 export class ProfileComponent implements OnInit {
@@ -40,10 +41,13 @@ export class ProfileComponent implements OnInit {
               private readonly themeService: ThemeService,
               private readonly userService: UserService,
               private readonly messageService: MessageService,
+              private readonly title: Title,
+              private readonly activatedRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle(this.activatedRoute.snapshot.data.title);
     this.selectedTheme = this.themeService.getTheme();
     this.translateService.onLangChange.subscribe(() => {
       this.selectedLanguage = this.userService.user.language;

@@ -1,13 +1,21 @@
 <p-menubar>
   <ng-template pTemplate="start">
-    <button (click)="redirectToChat()" [label]="' ' + ('header.labels.home' | translate)" class="p-button-text"
-            icon="pi pi-home" pButton
-            type="button"></button>
+    <button
+      (click)="redirectToChat()"
+      [label]="' ' + ('header.labels.home' | translate)"
+      class="p-button-text"
+      icon="pi pi-home"
+      pButton
+      type="button"></button>
   </ng-template>
   <ng-template pTemplate="end">
-    <button (click)="menu.toggle($event)" [label]="' ' + ('header.labels.account' | translate)"
-            class="p-button-rounded p-button-outlined" icon="pi pi-user"
-            pButton type="button"></button>
+    <button
+      (click)="menu.toggle($event)"
+      [label]="' ' + ('header.labels.account' | translate)"
+      class="p-button-rounded p-button-outlined"
+      icon="pi pi-user"
+      pButton
+      type="button"></button>
     <p-menu #menu [model]="items" [popup]="true"></p-menu>
   </ng-template>
 </p-menubar>

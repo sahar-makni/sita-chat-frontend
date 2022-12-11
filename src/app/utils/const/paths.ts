@@ -1,3 +1,4 @@
+// TODO: find a way to translate pages title's
 export const PATHS = {
   SIGN_IN: {
     VALUE: 'sign-in',

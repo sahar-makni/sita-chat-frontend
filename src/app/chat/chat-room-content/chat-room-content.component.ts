@@ -8,10 +8,10 @@ import {ScrollPanel} from 'primeng/scrollpanel';
 import {Subscription} from 'rxjs';
 
 const LOADING_LABEL = '...';
+
 @Component({
   selector: 'app-chat-room-content',
   templateUrl: './chat-room-content.component.html',
-  styleUrls: ['./chat-room-content.component.scss']
 })
 export class ChatRoomContentComponent implements OnInit, OnDestroy {
   roomId: number;
@@ -31,7 +31,7 @@ export class ChatRoomContentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.routeSubscription =  this.route.paramMap.subscribe((params: ParamMap) => {
+    this.routeSubscription = this.route.paramMap.subscribe((params: ParamMap) => {
       this.roomId = +params.get('id');
       this.loadMessages(this.roomId);
       this.chatRoomService.selectedRoomId = this.roomId;
@@ -39,10 +39,10 @@ export class ChatRoomContentComponent implements OnInit, OnDestroy {
     });
   }
 
-   ngOnDestroy(): void{
-     this.routeSubscription?.unsubscribe();
-     this.messagesSubscription?.unsubscribe();
-   }
+  ngOnDestroy(): void {
+    this.routeSubscription?.unsubscribe();
+    this.messagesSubscription?.unsubscribe();
+  }
 
   private loadMessages(roomId: number): void {
     this.messagesSubscription?.unsubscribe();
@@ -59,10 +59,12 @@ export class ChatRoomContentComponent implements OnInit, OnDestroy {
   sendMessage(): void {
     this.chatRoomService.sendMessage(this.roomId, this.newMessage).subscribe();
     this.newMessage = '';
+    // TODO: Find a way to scroll to bottom without using large number
+    // this.scrollPanel.scrollTop(200000000);
   }
 
   trackByMethod(index: number, el: MessageResponse): number {
-    return el.id ;
+    return el.id;
   }
 
   senderName(userId: number): string {

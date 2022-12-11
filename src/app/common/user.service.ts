@@ -16,12 +16,16 @@ import {
   ACCESS_TOKEN,
   USER_INFO,
   USER_WS_PATH,
-  USER_WS_PATH_CHANGE_PASSWORD
+  USER_WS_PATH_CHANGE_PASSWORD,
+  SIGN_IN_WS_PATH,
 } from '../utils/const/general';
 import {Router} from '@angular/router';
 import {PATHS} from '../utils/const/paths';
 import {ThemeService} from './theme.service';
 import {TranslateService} from '@ngx-translate/core';
+
+
+const DELAY_FOR_THEME_TO_APPLY = 10;
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -48,7 +52,7 @@ export class UserService {
 
 
   signIn(signInRequest: SignInRequest): Observable<SignInResponse> {
-    return this.httpClient.post<SignInResponse>(`${environment.baseUrl}/signin`, signInRequest)
+    return this.httpClient.post<SignInResponse>(`${environment.baseUrl}${SIGN_IN_WS_PATH}`, signInRequest)
       .pipe(
         tap((signInSuccessResponse: SignInSuccessResponse) =>
           this.localStorage.setItem(ACCESS_TOKEN, signInSuccessResponse.accessToken)),
@@ -58,7 +62,7 @@ export class UserService {
         tap(([_, userResponse]: [SignInSuccessResponse, UserResponse]) => {
           this.setUserPreferences(userResponse);
         }),
-        delay(10), // add a small delay allowing enough time for the theme to be applied
+        delay(DELAY_FOR_THEME_TO_APPLY), // add a small delay allowing enough time for the theme to be applied
         map(([signInSuccessResponse]: [SignInSuccessResponse, UserResponse]) => {
           return signInSuccessResponse;
         }));
@@ -77,7 +81,7 @@ export class UserService {
     // we need a little wait here, so that the theme is well modified
     setTimeout(() => {
       this.router.navigate([PATHS.SIGN_IN.VALUE]).then();
-    }, 10);
+    }, DELAY_FOR_THEME_TO_APPLY);
   }
 
   updateEmail(email: string): Observable<boolean> {

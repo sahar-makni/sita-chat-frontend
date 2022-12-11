@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SignInSuccessResponse} from '../common/user.type';
 import {MessageService} from 'primeng-lts/api';
 import {TranslateService} from '@ngx-translate/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../common/user.service';
 
 @Component({
@@ -25,13 +25,13 @@ export class SignInComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly title: Title,
     private readonly userService: UserService,
+    private readonly activatedRoute: ActivatedRoute,
   ) {
     this.setupForm();
   }
 
   ngOnInit(): void {
-    this.title.setTitle(PATHS.SIGN_IN.TITLE);
-
+    this.title.setTitle(this.activatedRoute.snapshot.data.title);
   }
 
   private setupForm(): void {

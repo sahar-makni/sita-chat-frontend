@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input} from '@angular/core';
 
 export type MessageItemPosition = 'LEFT' | 'RIGHT';
 
@@ -7,15 +7,11 @@ export type MessageItemPosition = 'LEFT' | 'RIGHT';
   templateUrl: './message-item.component.html',
   styleUrls: ['./message-item.component.scss']
 })
-export class MessageItemComponent implements OnInit {
-
+export class MessageItemComponent {
   @Input() messageText: string;
   @Input() messageDate: Date;
   @Input() messagePosition: MessageItemPosition;
   @Input() senderName: string;
-
-  constructor() {
-  }
 
   @HostBinding('class.p-as-end')
   get isSender(): boolean {
@@ -26,8 +22,4 @@ export class MessageItemComponent implements OnInit {
   get isReceiver(): boolean {
     return this.messagePosition === 'RIGHT';
   }
-
-  ngOnInit(): void {
-  }
-
 }

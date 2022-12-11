@@ -1,18 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-stat-image',
   templateUrl: './stat-image.component.html',
-  styleUrls: ['./stat-image.component.scss']
 })
-export class StatImageComponent implements OnInit {
+export class StatImageComponent {
 
   @Input() userMessagesCount: number;
   @Input() userRoomsCount: number;
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
 }

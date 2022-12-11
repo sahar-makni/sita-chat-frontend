@@ -11,7 +11,7 @@ import {UserResponse} from '../common/user.type';
 export class ChatRoomService {
   usersMap: { [userId: number]: UserResponse } = {};
   private chatRoomResponses: ChatRoomResponse[] = [];
-  selectedRoomId = 1; // No room selected by default
+  selectedRoomId = -1; // No room selected by default
   constructor(
     private readonly httpClient: HttpClient,
   ) {

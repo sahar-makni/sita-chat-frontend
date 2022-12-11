@@ -1,13 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from '../../utils/form/validator/confirmation.validator';
 
 @Component({
   selector: 'app-edit-password-dialog',
   templateUrl: './edit-password-dialog.component.html',
-  styleUrls: ['./edit-password-dialog.component.scss']
 })
-export class EditPasswordDialogComponent implements OnInit {
+export class EditPasswordDialogComponent {
   @Input()
   get visible(): boolean {
     return this._visible;
@@ -33,9 +32,6 @@ export class EditPasswordDialogComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
   ) {
-  }
-
-  ngOnInit(): void {
   }
 
   cancelEditPassword(): void {

@@ -49,5 +49,10 @@
       "error": "Invalid password",
       "mismatch": "New password and confirmation do NOT match"
     }
+  },
+  "chatRoom": {
+    "input": {
+      "placeholder": "Type your message here..."
+    }
   }
 }

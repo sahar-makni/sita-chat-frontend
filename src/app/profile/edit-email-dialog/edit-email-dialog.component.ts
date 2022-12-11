@@ -1,12 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-email-dialog',
   templateUrl: './edit-email-dialog.component.html',
-  styleUrls: ['./edit-email-dialog.component.scss']
 })
-export class EditEmailDialogComponent implements OnInit {
+export class EditEmailDialogComponent {
   @Input()
   get visible(): boolean {
     return this._visible;
@@ -20,7 +19,7 @@ export class EditEmailDialogComponent implements OnInit {
   }
 
   // tslint:disable-next-line:variable-name workaround to allow underscore
-   private _visible: boolean;
+  private _visible: boolean;
   @Output() visibleChange = new EventEmitter<boolean>();
   @Output() submitEmail = new EventEmitter<string>();
   emailInput: FormControl = this.fb.control('', [Validators.required, Validators.email]);
@@ -30,8 +29,6 @@ export class EditEmailDialogComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-  }
 
   cancelEditEmail(): void {
     this.visible = false;

@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {PATHS} from './utils/const/paths';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {ChatComponent} from './chat/chat.component';
@@ -15,11 +15,18 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: PATHS.CHAT.VALUE, component: ChatComponent, children: [
+        path: PATHS.CHAT.VALUE, component: ChatComponent,
+        children: [
           {path: ':id', component: ChatRoomContentComponent}
-        ]
+        ], data: {
+          title: PATHS.CHAT.TITLE,
+        }
       },
-      {path: PATHS.PROFILE.VALUE, component: ProfileComponent},
+      {
+        path: PATHS.PROFILE.VALUE,
+        component: ProfileComponent,
+        data: {title: PATHS.PROFILE.TITLE}
+      },
     ]
   },
   {
