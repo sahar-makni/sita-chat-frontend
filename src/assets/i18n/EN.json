@@ -44,10 +44,10 @@
       "header": "Change password",
       "oldPasswordLabel": "Current password",
       "newPasswordLabel": "New password",
-      "newPasswordConfirmationLabel": "Confirm password",
+      "newPasswordConfirmationLabel": "Confirm new password",
       "edit": "Change password",
       "error": "Invalid password",
-      "mismatch": "New password and confirmation do NOT match"
+      "mismatch": "New password and confirmation do not match"
     }
   },
   "chatRoom": {

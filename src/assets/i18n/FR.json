@@ -3,14 +3,14 @@
     "labels": {
       "connect": "Se connecter",
       "signIn": "Se connecter",
-      "noAccount": "You don't have an account?",
-      "noAccountCTA": "Sign up here."
+      "noAccount": "Vous n'avez pas encore de compte ? ",
+      "noAccountCTA": "Inscrivez-vous ici."
     },
     "errors": {
-      "signInError": "Wrong email or password."
+      "signInError": "Email ou mot de passe erroné."
     },
     "messages": {
-      "signInSuccess": "Welcome!"
+      "signInSuccess": "Bienvenue!"
     }
   },
   "header": {
@@ -21,14 +21,38 @@
   },
   "profile": {
     "theme": {
-      "label": "Choisir ton théme:",
-      "light": "Light Theme",
-      "dark": "Drakula"
+      "label": "Choisir votre théme:",
+      "light": "Clair",
+      "dark": "Sombre"
     },
     "language": {
-      "label": "Choisir ta langue:",
-      "en": "English",
-      "fr": "French"
+      "label": "Choisir votre langue:",
+      "en": "Anglais",
+      "fr": "Français"
+    },
+    "stat": {
+      "messagesCount": "Nombre de rooms:",
+      "roomsCount": "Nombre de messages:"
+    },
+    "email": {
+      "label": "Email:",
+      "error": "Une erreur s'est produite lors de la mise à jour de votre e-mail.",
+      "success": "Votre e-mail a été mis à jour avec succès!",
+      "header": "Mise à jour de l'e-mail"
+    },
+    "password": {
+      "header": "Modifier le mot de passe",
+      "oldPasswordLabel": "Mot de passe actuel",
+      "newPasswordLabel": "Nouveau mot de passe",
+      "newPasswordConfirmationLabel": "Confirmer nouveau mot de passe",
+      "edit": "Modifier le mot de passe",
+      "error": "Mot de passe invalide",
+      "mismatch": "Le nouveau mot de passe et la confirmation ne correspondent pas"
+    }
+  },
+  "chatRoom": {
+    "input": {
+      "placeholder": "Tapez votre message ici..."
     }
   }
 }
