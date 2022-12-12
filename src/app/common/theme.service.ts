@@ -39,6 +39,6 @@ export class ThemeService {
 
   getTheme(): ThemeOption {
     const user = JSON.parse(this.localStorage.getItem(USER_INFO)) as UserResponse;
-    return user.theme;
+    return user?.theme;
   }
 }

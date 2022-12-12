@@ -85,7 +85,6 @@ export class UserService {
   }
 
   updateEmail(email: string): Observable<boolean> {
-    // return throwError(new Error('Failed to update email'));
     return this.patchUser(this.getUserId(), {email}).pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
@@ -93,9 +92,9 @@ export class UserService {
   }
 
   private setUserPreferences(userResponse: UserResponse): void {
+    this.user = userResponse;
     this.themeService.switchTheme(userResponse.theme);
     this.translateService.use(userResponse.language);
-    this.user = userResponse;
   }
 
   patchUser(userId: number, body: PartialPatchUserBody): Observable<UserResponse> {
